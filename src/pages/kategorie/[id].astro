@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import TipCard from '../../components/TipCard.astro';
+import { categories, type Category } from '../../lib/tips';
+
+export function getStaticPaths() {
+  return categories.map((category) => ({ params: { id: category.id }, props: { category } }));
+}
+
+const { category } = Astro.props as { category: Category };
+---
+
+<Base title={`${category.name} – xurax`} description={category.description}>
+  <nav aria-label="Brotkrumen" class="crumbs"><a href="/">Start</a> / {category.name}</nav>
+  <h1>{category.name}</h1>
+  <p class="lead">{category.description} {category.tips.length} Tipps.</p>
+  <div class="tip-list">
+    {category.tips.map((tip) => <TipCard tip={tip} />)}
+  </div>
+  <p><a href="/#kategorien">← Alle Kategorien</a></p>
+</Base>

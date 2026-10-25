@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Kurze, geprüfte Tipps für Claude.ai, Claude Code und die API. Auf Deutsch.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-row">
+        <a href="/" class="logo"><span class="logo-mark">x</span>xurax</a>
+        <nav aria-label="Hauptnavigation">
+          <a href="/#kategorien">Kategorien</a>
+          <a href="/#suche">Suche</a>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          xurax.de sammelt Tipps aus der offiziellen Anthropic-Dokumentation und aus der Community.
+          Inoffiziell, nicht mit Anthropic verbunden.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

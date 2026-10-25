@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import TipCard from '../components/TipCard.astro';
+import { allTips, categories, countByLevel, levels } from '../lib/tips';
+
+const counts = countByLevel(allTips.map((t) => t.tip));
+---
+
+<Base title="xurax – Tipps & Tricks für Claude">
+  <section class="hero">
+    <p class="pill">{allTips.length} Tipps · {categories.length} Kategorien · auf Deutsch</p>
+    <h1>Mehr aus Claude herausholen.</h1>
+    <p class="lead">Kurze, geprüfte Tipps für Claude.ai, Claude Code und die API. Jeder Tipp mit Level und Quelle.</p>
+
+    <div id="suche" class="search">
+      <label for="q" class="sr-only">Tipps durchsuchen</label>
+      <input id="q" type="search" placeholder="z. B. „CLAUDE.md“, „Halluzinationen“, „Shift+Tab“" autocomplete="off" />
+    </div>
+    <div class="chips" role="group" aria-label="Nach Level filtern">
+      <button type="button" class="chip" data-level="" aria-pressed="true">Alle · {allTips.length}</button>
+      {levels.map((l) => (
+        <button type="button" class="chip" data-level={l} aria-pressed="false">{l} · {counts[l]}</button>
+      ))}
+    </div>
+  </section>
+
+  <section id="kategorien" aria-labelledby="kat-h">
+    <h2 id="kat-h">Kategorien</h2>
+    <div class="cat-grid">
+      {categories.map((c) => (
+        <a class="cat" href={`/kategorie/${c.id}/`}>
+          <span>{c.name}</span>
+          <span class="count">{c.tips.length}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section aria-labelledby="alle-h">
+    <h2 id="alle-h">Alle Tipps <span id="treffer" class="muted"></span></h2>
+    <div class="tip-grid" id="tips">
+      {allTips.map(({ tip, category }) => <TipCard tip={tip} category={category.name} />)}
+    </div>
+    <p id="leer" class="muted" hidden>Kein Tipp gefunden. Versuch einen anderen Begriff.</p>
+  </section>
+</Base>
+
+<script>
+  const q = document.querySelector<HTMLInputElement>('#q')!;
+  const chips = [...document.querySelectorAll<HTMLButtonElement>('.chip')];
+  const tips = [...document.querySelectorAll<HTMLElement>('#tips .tip')];
+  const treffer = document.querySelector('#treffer')!;
+  const leer = document.querySelector<HTMLElement>('#leer')!;
+  let level = '';
+
+  function apply() {
+    const terms = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+    let shown = 0;
+    for (const el of tips) {
+      const ok = (!level || el.dataset.level === level) && terms.every((t) => el.dataset.search!.includes(t));
+      el.hidden = !ok;
+      if (ok) shown++;
+    }
+    treffer.textContent = `(${shown})`;
+    leer.hidden = shown > 0;
+  }
+
+  q.addEventListener('input', apply);
+  for (const chip of chips) {
+    chip.addEventListener('click', () => {
+      level = chip.dataset.level ?? '';
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+      apply();
+    });
+  }
+  apply();
+</script>
