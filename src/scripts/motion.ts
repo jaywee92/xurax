@@ -31,6 +31,12 @@ function heroIntro() {
     tl.from(split.chars, { yPercent: 110, duration: 0.8, stagger: 0.018 });
   }
   tl.from(rest, { y: 16, autoAlpha: 0, duration: 0.6, stagger: 0.08 }, '-=0.45');
+
+  // Zahlen im Hero hochzählen
+  for (const el of hero.querySelectorAll<HTMLElement>('[data-count]')) {
+    const counter = { n: 0 };
+    tl.to(counter, { n: Number(el.dataset.count), duration: 1.2, ease: 'power2.out', onUpdate: () => (el.textContent = String(Math.round(counter.n))) }, 0.2);
+  }
 }
 
 function scrollEffects() {

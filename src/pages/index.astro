@@ -10,7 +10,7 @@ const pool = allTips.map(({ tip, category }) => ({ title: tip.title, text: tip.t
 
 <Base title="xurax – Tipps & Tricks für Claude">
   <section class="hero">
-    <p class="pill">{allTips.length} Tipps · {categories.length} Kategorien · auf Deutsch</p>
+    <p class="pill"><span data-count={allTips.length}>{allTips.length}</span> Tipps · <span data-count={categories.length}>{categories.length}</span> Kategorien · auf Deutsch</p>
     <h1>Mehr aus Claude herausholen.</h1>
     <p class="lead">Kurze, geprüfte Tipps für Claude.ai, Claude Code und die API. Jeder Tipp mit Level und Quelle.</p>
 
