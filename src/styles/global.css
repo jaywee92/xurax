@@ -106,3 +106,11 @@ h2 { font-size: 1.75rem; }
 
 .site-footer { border-top: 1px solid var(--border); background: var(--surface); color: var(--muted); font-size: 0.875rem; }
 .site-footer p { margin: 0; padding: 2rem 0; max-width: 40rem; }
+
+/* Animationen (siehe src/scripts/motion.ts) */
+.motion .hero > * { visibility: hidden; }
+.hero h1 .char { display: inline-block; will-change: transform; }
+.cat, .tip { will-change: transform; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}

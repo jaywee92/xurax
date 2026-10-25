@@ -5,7 +5,7 @@ import { allTips, categories, countByLevel, groups, levels } from '../lib/tips';
 
 const counts = countByLevel(allTips.map((t) => t.tip));
 const first = allTips[0];
-const pool = allTips.map(({ tip, category }) => ({ title: tip.title, text: tip.text, cat: category.name }));
+const pool = allTips.map(({ tip, category }) => ({ title: tip.title, text: tip.text, cat: category.name, level: tip.level }));
 ---
 
 <Base title="xurax – Tipps & Tricks für Claude">
@@ -64,43 +64,63 @@ const pool = allTips.map(({ tip, category }) => ({ title: tip.title, text: tip.t
 <script is:inline type="application/json" id="tip-pool" set:html={JSON.stringify(pool)} />
 
 <script>
-  // Tipp des Tages: pro Kalendertag fest, der Button zieht zufällig.
-  const pool: { title: string; text: string; cat: string }[] = JSON.parse(document.querySelector('#tip-pool')!.textContent!);
-  const show = (i: number) => {
-    const t = pool[i];
-    document.querySelector('#zufall-title')!.textContent = t.title;
-    document.querySelector('#zufall-text')!.textContent = t.text;
-    document.querySelector('#zufall-cat')!.textContent = t.cat;
-  };
-  show(Math.floor(Date.now() / 864e5) % pool.length);
-  document.querySelector('#zufall-next')!.addEventListener('click', () => show(Math.floor(Math.random() * pool.length)));
+  import Fuse from 'fuse.js';
+  import { popIn } from '../scripts/motion';
 
-  const q = document.querySelector<HTMLInputElement>('#q')!;
-  const chips = [...document.querySelectorAll<HTMLButtonElement>('.chip')];
-  const tips = [...document.querySelectorAll<HTMLElement>('#tips .tip')];
-  const treffer = document.querySelector('#treffer')!;
-  const leer = document.querySelector<HTMLElement>('#leer')!;
-  let level = '';
+  type PoolTip = { title: string; text: string; cat: string; level: string };
 
-  function apply() {
-    const terms = q.value.toLowerCase().split(/\s+/).filter(Boolean);
-    let shown = 0;
-    for (const el of tips) {
-      const ok = (!level || el.dataset.level === level) && terms.every((t) => el.dataset.search!.includes(t));
-      el.hidden = !ok;
-      if (ok) shown++;
-    }
-    treffer.textContent = `(${shown})`;
-    leer.hidden = shown > 0;
-  }
+  document.addEventListener('astro:page-load', () => {
+    const poolEl = document.querySelector('#tip-pool');
+    if (!poolEl) return;
+    const pool: PoolTip[] = JSON.parse(poolEl.textContent!);
 
-  q.addEventListener('input', apply);
-  for (const chip of chips) {
-    chip.addEventListener('click', () => {
-      level = chip.dataset.level ?? '';
-      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
-      apply();
+    // Tipp des Tages: pro Kalendertag fest, der Button zieht zufällig.
+    const show = (i: number) => {
+      const t = pool[i];
+      document.querySelector('#zufall-title')!.textContent = t.title;
+      document.querySelector('#zufall-text')!.textContent = t.text;
+      document.querySelector('#zufall-cat')!.textContent = t.cat;
+    };
+    show(Math.floor(Date.now() / 864e5) % pool.length);
+    document.querySelector('#zufall-next')!.addEventListener('click', () => show(Math.floor(Math.random() * pool.length)));
+
+    // Unscharfe Suche: findet auch Tippfehler wie „halluzinatonen“.
+    const fuse = new Fuse(pool, {
+      keys: [{ name: 'title', weight: 2 }, 'text', 'cat'],
+      threshold: 0.35,
+      ignoreLocation: true,
     });
-  }
-  apply();
+    const q = document.querySelector<HTMLInputElement>('#q')!;
+    const chips = [...document.querySelectorAll<HTMLButtonElement>('.chip')];
+    const tips = [...document.querySelectorAll<HTMLElement>('#tips .tip')];
+    const treffer = document.querySelector('#treffer')!;
+    const leer = document.querySelector<HTMLElement>('#leer')!;
+    let level = '';
+
+    function apply() {
+      const query = q.value.trim();
+      const hits = query ? new Set(fuse.search(query).map((r) => r.refIndex)) : null;
+      const appeared: HTMLElement[] = [];
+      let shown = 0;
+      tips.forEach((el, i) => {
+        const ok = (!level || pool[i].level === level) && (!hits || hits.has(i));
+        if (ok && el.hidden) appeared.push(el);
+        el.hidden = !ok;
+        if (ok) shown++;
+      });
+      treffer.textContent = `(${shown})`;
+      leer.hidden = shown > 0;
+      popIn(appeared);
+    }
+
+    q.addEventListener('input', apply);
+    for (const chip of chips) {
+      chip.addEventListener('click', () => {
+        level = chip.dataset.level ?? '';
+        chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+        apply();
+      });
+    }
+    apply();
+  });
 </script>

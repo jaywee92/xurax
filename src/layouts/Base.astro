@@ -1,6 +1,7 @@
 ---
 import '@fontsource-variable/inter';
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -19,6 +20,10 @@ const { title, description = 'Kurze, geprüfte Tipps für Claude.ai, Claude Code
     <meta name="description" content={description} />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <ClientRouter />
+    <script is:inline>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -42,5 +47,8 @@ const { title, description = 'Kurze, geprüfte Tipps für Claude.ai, Claude Code
         </p>
       </div>
     </footer>
+    <script>
+      import '../scripts/motion';
+    </script>
   </body>
 </html>
