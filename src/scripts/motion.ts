@@ -23,9 +23,9 @@ function heroIntro() {
   const hero = document.querySelector<HTMLElement>('.hero');
   if (!hero) return;
   const title = hero.querySelector('h1');
-  const rest = hero.querySelectorAll(':scope > :not(h1)');
+  const rest = hero.querySelectorAll('.hero-copy > :not(h1), .hero-actions > *');
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-  gsap.set(hero.children, { autoAlpha: 1 });
+  gsap.set('.hero-copy, .hero-actions', { autoAlpha: 1 });
   if (title) {
     const split = SplitText.create(title, { type: 'words,chars', mask: 'words' });
     tl.from(split.chars, { yPercent: 110, duration: 0.8, stagger: 0.018 });
@@ -50,7 +50,7 @@ function scrollEffects() {
       scrollTrigger: { trigger: featured, start: 'top 85%' },
     });
   }
-  gsap.to('.hero', {
+  gsap.to('.hero-copy, .hero-actions', {
     yPercent: -8,
     opacity: 0.4,
     ease: 'none',
@@ -77,7 +77,18 @@ function reveals() {
   });
 }
 
+// Partikel-Kugel erst nachladen, damit Three.js den Seitenstart nicht bremst.
+let stopParticles: (() => void) | undefined;
+function particles() {
+  const canvas = document.querySelector<HTMLCanvasElement>('.hero-canvas');
+  if (!canvas) return;
+  import('./particles').then(({ particleHero }) => {
+    if (canvas.isConnected) stopParticles = particleHero(canvas);
+  });
+}
+
 document.addEventListener('astro:page-load', () => {
+  particles();
   if (reduced) return;
   heroIntro();
   scrollEffects();
@@ -86,6 +97,8 @@ document.addEventListener('astro:page-load', () => {
 
 document.addEventListener('astro:before-swap', () => {
   ScrollTrigger.getAll().forEach((t) => t.kill());
+  stopParticles?.();
+  stopParticles = undefined;
 });
 
 // Für die Suche: neu eingeblendete Tipps sanft animieren.
