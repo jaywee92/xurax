@@ -1,9 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
 import TipCard from '../components/TipCard.astro';
-import { allTips, categories, countByLevel, levels } from '../lib/tips';
+import { allTips, categories, countByLevel, groups, levels } from '../lib/tips';
 
 const counts = countByLevel(allTips.map((t) => t.tip));
+const first = allTips[0];
+const pool = allTips.map(({ tip, category }) => ({ title: tip.title, text: tip.text, cat: category.name }));
 ---
 
 <Base title="xurax – Tipps & Tricks für Claude">
@@ -24,16 +26,30 @@ const counts = countByLevel(allTips.map((t) => t.tip));
     </div>
   </section>
 
+  <section id="zufall" class="featured" aria-labelledby="zufall-h">
+    <div>
+      <p id="zufall-h" class="eyebrow">Tipp des Tages · <span id="zufall-cat">{first.category.name}</span></p>
+      <h2 id="zufall-title">{first.tip.title}</h2>
+      <p id="zufall-text">{first.tip.text}</p>
+    </div>
+    <button type="button" id="zufall-next" class="button-secondary">Nächster Zufallstipp →</button>
+  </section>
+
   <section id="kategorien" aria-labelledby="kat-h">
     <h2 id="kat-h">Kategorien</h2>
-    <div class="cat-grid">
-      {categories.map((c) => (
-        <a class="cat" href={`/kategorie/${c.id}/`}>
-          <span>{c.name}</span>
-          <span class="count">{c.tips.length}</span>
-        </a>
-      ))}
-    </div>
+    {groups.map((g) => (
+      <div class="cat-group">
+        <h3 class="eyebrow muted-eyebrow">{g.name}</h3>
+        <div class="cat-grid">
+          {g.categories.map((c) => (
+            <a class="cat" href={`/kategorie/${c.id}/`}>
+              <span>{c.name}</span>
+              <span class="count">{c.tips.length}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
   </section>
 
   <section aria-labelledby="alle-h">
@@ -45,7 +61,20 @@ const counts = countByLevel(allTips.map((t) => t.tip));
   </section>
 </Base>
 
+<script is:inline type="application/json" id="tip-pool" set:html={JSON.stringify(pool)} />
+
 <script>
+  // Tipp des Tages: pro Kalendertag fest, der Button zieht zufällig.
+  const pool: { title: string; text: string; cat: string }[] = JSON.parse(document.querySelector('#tip-pool')!.textContent!);
+  const show = (i: number) => {
+    const t = pool[i];
+    document.querySelector('#zufall-title')!.textContent = t.title;
+    document.querySelector('#zufall-text')!.textContent = t.text;
+    document.querySelector('#zufall-cat')!.textContent = t.cat;
+  };
+  show(Math.floor(Date.now() / 864e5) % pool.length);
+  document.querySelector('#zufall-next')!.addEventListener('click', () => show(Math.floor(Math.random() * pool.length)));
+
   const q = document.querySelector<HTMLInputElement>('#q')!;
   const chips = [...document.querySelectorAll<HTMLButtonElement>('.chip')];
   const tips = [...document.querySelectorAll<HTMLElement>('#tips .tip')];

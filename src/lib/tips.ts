@@ -29,6 +29,17 @@ export const levels: Level[] = ['Einsteiger', 'Fortgeschritten', 'Profi'];
 
 export const allTips = categories.flatMap((c) => c.tips.map((tip) => ({ tip, category: c })));
 
+const groupOf = (id: string) =>
+  id.startsWith('cc-') ? 'Claude Code'
+  : ['api-agents', 'skills'].includes(id) ? 'Entwickeln'
+  : ['security', 'resources'].includes(id) ? 'Allgemein'
+  : 'Claude nutzen';
+
+export const groups = ['Claude nutzen', 'Claude Code', 'Entwickeln', 'Allgemein'].map((name) => ({
+  name,
+  categories: categories.filter((c) => groupOf(c.id) === name),
+}));
+
 export function countByLevel(tips: Tip[]) {
   return Object.fromEntries(levels.map((l) => [l, tips.filter((t) => t.level === l).length])) as Record<Level, number>;
 }
