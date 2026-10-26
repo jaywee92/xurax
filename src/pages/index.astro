@@ -1,68 +1,114 @@
 ---
 import Base from '../layouts/Base.astro';
 import TipCard from '../components/TipCard.astro';
-import { allTips, categories, countByLevel, groups, levels } from '../lib/tips';
+import LevelBar from '../components/LevelBar.astro';
+import LevelFilter from '../components/LevelFilter.astro';
+import { allTips, categories, countByLevel, groupOf, groups, levels, shortName, startPath, tipUrl } from '../lib/tips';
 
 const counts = countByLevel(allTips.map((t) => t.tip));
 const first = allTips[0];
-const pool = allTips.map(({ tip, category }) => ({ title: tip.title, text: tip.text, cat: category.name, level: tip.level }));
+const pool = allTips.map(({ tip, category }) => ({ title: tip.title, text: tip.text, cat: shortName(category.name), level: tip.level, url: tipUrl(category, tip) }));
+const groupIndex = (id: string) => groups.findIndex((g) => g.name === groupOf(id));
 ---
 
 <Base title="xurax – Tipps & Tricks für Claude">
-  <section class="hero">
-    <canvas class="hero-canvas" aria-hidden="true"></canvas>
-    <div class="hero-copy">
-      <p class="pill"><span data-count={allTips.length}>{allTips.length}</span> Tipps · <span data-count={categories.length}>{categories.length}</span> Kategorien · auf Deutsch</p>
-      <h1>Mehr aus Claude herausholen.</h1>
-      <p class="lead">Kurze, geprüfte Tipps für Claude.ai, Claude Code und die API. Jeder Tipp mit Level und Quelle.</p>
-    </div>
-    <div class="hero-actions">
-      <div id="suche" class="search">
-        <label for="q" class="sr-only">Tipps durchsuchen</label>
-        <input id="q" type="search" placeholder="z. B. „CLAUDE.md“, „Halluzinationen“, „Shift+Tab“" autocomplete="off" />
-      </div>
-      <div class="chips" role="group" aria-label="Nach Level filtern">
-        <button type="button" class="chip" data-level="" aria-pressed="true">Alle · {allTips.length}</button>
-        {levels.map((l) => (
-          <button type="button" class="chip" data-level={l} aria-pressed="false">{l} · {counts[l]}</button>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="zufall" class="featured" aria-labelledby="zufall-h">
-    <div>
-      <p id="zufall-h" class="eyebrow">Tipp des Tages · <span id="zufall-cat">{first.category.name}</span></p>
-      <h2 id="zufall-title">{first.tip.title}</h2>
-      <p id="zufall-text">{first.tip.text}</p>
-    </div>
-    <button type="button" id="zufall-next" class="button-secondary">Nächster Zufallstipp →</button>
-  </section>
-
-  <section id="kategorien" aria-labelledby="kat-h">
-    <h2 id="kat-h">Kategorien</h2>
-    {groups.map((g) => (
-      <div class="cat-group">
-        <h3 class="eyebrow muted-eyebrow">{g.name}</h3>
-        <div class="cat-grid">
-          {g.categories.map((c) => (
-            <a class="cat" href={`/kategorie/${c.id}/`}>
-              <span>{c.name}</span>
-              <span class="count">{c.tips.length}</span>
-            </a>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="pill"><span data-count={allTips.length}>{allTips.length}</span> Tipps · <span data-count={categories.length}>{categories.length}</span> Kategorien · kostenlos</p>
+        <h1>Hol mehr aus <em>Claude</em> heraus.</h1>
+        <p class="lead">Kurze, geprüfte Tipps für Claude, Claude Code und die API. Übersichtlich sortiert, vom ersten Prompt bis zum eigenen Agenten.</p>
+        <div id="suche" class="search">
+          <label class="field">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+            <span class="sr-only">Tipps durchsuchen</span>
+            <input id="q" type="search" placeholder="Wonach suchst du? z. B. Kontext sparen" autocomplete="off" aria-controls="q-res" />
+          </label>
+          <div id="q-res" class="search-res" aria-live="polite"></div>
+        </div>
+        <div class="stats">
+          {levels.map((l) => (
+            <div><b data-count={counts[l]}>{counts[l]}</b><span>{l}</span></div>
           ))}
         </div>
       </div>
-    ))}
-  </section>
+      <div class="hero-orb" aria-hidden="true"><canvas class="hero-canvas"></canvas></div>
+    </section>
 
-  <section aria-labelledby="alle-h">
-    <h2 id="alle-h">Alle Tipps <span id="treffer" class="muted"></span></h2>
-    <div class="tip-grid" id="tips">
-      {allTips.map(({ tip, category }) => <TipCard tip={tip} category={category.name} />)}
-    </div>
-    <p id="leer" class="muted" hidden>Kein Tipp gefunden. Versuch einen anderen Begriff.</p>
-  </section>
+    <section id="start" class="path" aria-labelledby="start-h">
+      <div class="path-head">
+        <h2 id="start-h">Neu hier? Starte mit diesen 5 Tipps</h2>
+        <span class="muted">Aus 5 verschiedenen Kategorien</span>
+      </div>
+      <ol>
+        {startPath.map(({ tip, category }) => (
+          <li>
+            <a href={tipUrl(category, tip)}><b>{tip.title}</b><span>{shortName(category.name)}</span></a>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section id="zufall" class="day" aria-labelledby="zufall-title">
+      <span class="ic" aria-hidden="true">★</span>
+      <div>
+        <p class="eyebrow">Tipp des Tages · <span id="zufall-cat">{shortName(first.category.name)}</span></p>
+        <h2 id="zufall-title">{first.tip.title}</h2>
+        <p id="zufall-text">{first.tip.text}</p>
+      </div>
+      <div class="day-actions">
+        <a id="zufall-link" class="btn" href={tipUrl(first.category, first.tip)}>Zur Kategorie</a>
+        <button type="button" id="zufall-next" class="btn ghost">Anderer Tipp</button>
+      </div>
+    </section>
+
+    <section id="kategorien" aria-labelledby="kat-h">
+      <div class="sec-head">
+        <div>
+          <h2 id="kat-h">Kategorien</h2>
+          <p>Vier Bereiche, {categories.length} Kategorien. Wähle einen Bereich oder stöbere in allen.</p>
+        </div>
+        <div class="seg" role="group" aria-label="Bereich wählen" id="group-filter">
+          <button type="button" data-group="" aria-pressed="true">Alle</button>
+          {groups.map((g) => <button type="button" data-group={g.name} aria-pressed="false">{g.name}</button>)}
+        </div>
+      </div>
+      <div class="cat-cards">
+        {categories.map((c) => (
+          <a class="cat-card" href={`/kategorie/${c.id}/`} data-group={groupOf(c.id)}>
+            <span class="top">
+              <span class={`tile g-${groupIndex(c.id)}`} aria-hidden="true">{shortName(c.name).charAt(0)}</span>
+              <span><b>{shortName(c.name)}</b><span class="g">{groupOf(c.id)}</span></span>
+            </span>
+            <span class="foot"><span>{c.tips.length} Tipps</span><LevelBar tips={c.tips} /></span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section id="alle" aria-labelledby="alle-h">
+      <div class="sec-head">
+        <div>
+          <h2 id="alle-h">Alle Tipps</h2>
+          <p>Nach Level und Kategorie filtern. <span id="treffer"></span></p>
+        </div>
+      </div>
+      <div class="tools">
+        <LevelFilter />
+        <label class="select">
+          <span class="sr-only">Kategorie</span>
+          <select id="cat-filter">
+            <option value="">Alle Kategorien</option>
+            {categories.map((c) => <option value={c.id}>{shortName(c.name)} ({c.tips.length})</option>)}
+          </select>
+        </label>
+      </div>
+      <div class="tip-cards" id="tips">
+        {allTips.map(({ tip, category }) => <TipCard tip={tip} category={category} />)}
+      </div>
+      <div class="more"><button type="button" class="btn" id="more">Mehr anzeigen</button></div>
+    </section>
+  </div>
 </Base>
 
 <script is:inline type="application/json" id="tip-pool" set:html={JSON.stringify(pool)} />
@@ -70,8 +116,10 @@ const pool = allTips.map(({ tip, category }) => ({ title: tip.title, text: tip.t
 <script>
   import Fuse from 'fuse.js';
   import { popIn } from '../scripts/motion';
+  import { onLevelFilter } from '../scripts/site';
 
-  type PoolTip = { title: string; text: string; cat: string; level: string };
+  type PoolTip = { title: string; text: string; cat: string; level: string; url: string };
+  const STEP = 12;
 
   document.addEventListener('astro:page-load', () => {
     const poolEl = document.querySelector('#tip-pool');
@@ -84,47 +132,77 @@ const pool = allTips.map(({ tip, category }) => ({ title: tip.title, text: tip.t
       document.querySelector('#zufall-title')!.textContent = t.title;
       document.querySelector('#zufall-text')!.textContent = t.text;
       document.querySelector('#zufall-cat')!.textContent = t.cat;
+      document.querySelector<HTMLAnchorElement>('#zufall-link')!.href = t.url;
     };
     show(Math.floor(Date.now() / 864e5) % pool.length);
     document.querySelector('#zufall-next')!.addEventListener('click', () => show(Math.floor(Math.random() * pool.length)));
 
-    // Unscharfe Suche: findet auch Tippfehler wie „halluzinatonen“.
-    const fuse = new Fuse(pool, {
-      keys: [{ name: 'title', weight: 2 }, 'text', 'cat'],
-      threshold: 0.35,
-      ignoreLocation: true,
-    });
+    // Suche oben: unscharf, findet auch Tippfehler wie „halluzinatonen“.
+    const fuse = new Fuse(pool, { keys: [{ name: 'title', weight: 2 }, 'text', 'cat'], threshold: 0.35, ignoreLocation: true });
     const q = document.querySelector<HTMLInputElement>('#q')!;
-    const chips = [...document.querySelectorAll<HTMLButtonElement>('.chip')];
-    const tips = [...document.querySelectorAll<HTMLElement>('#tips .tip')];
-    const treffer = document.querySelector('#treffer')!;
-    const leer = document.querySelector<HTMLElement>('#leer')!;
-    let level = '';
-
-    function apply() {
+    const res = document.querySelector<HTMLElement>('#q-res')!;
+    q.addEventListener('input', () => {
       const query = q.value.trim();
-      const hits = query ? new Set(fuse.search(query).map((r) => r.refIndex)) : null;
-      const appeared: HTMLElement[] = [];
-      let shown = 0;
-      tips.forEach((el, i) => {
-        const ok = (!level || pool[i].level === level) && (!hits || hits.has(i));
-        if (ok && el.hidden) appeared.push(el);
-        el.hidden = !ok;
-        if (ok) shown++;
+      res.replaceChildren();
+      if (query.length < 2) return;
+      const hits = fuse.search(query).slice(0, 6);
+      if (!hits.length) {
+        const p = document.createElement('p');
+        p.className = 'empty';
+        p.textContent = 'Kein Tipp gefunden. Versuch einen anderen Begriff.';
+        res.append(p);
+        return;
+      }
+      for (const { item } of hits) {
+        const a = document.createElement('a');
+        a.href = item.url;
+        const b = document.createElement('b');
+        b.textContent = item.title;
+        const s = document.createElement('span');
+        s.textContent = item.cat;
+        a.append(b, s);
+        res.append(a);
+      }
+    });
+
+    // Kategorien nach Bereich
+    const gButtons = [...document.querySelectorAll<HTMLButtonElement>('#group-filter button')];
+    const cards = [...document.querySelectorAll<HTMLElement>('.cat-card')];
+    for (const b of gButtons) {
+      b.addEventListener('click', () => {
+        gButtons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        const g = b.dataset.group;
+        const appeared = cards.filter((c) => c.hidden && (!g || c.dataset.group === g));
+        cards.forEach((c) => (c.hidden = Boolean(g) && c.dataset.group !== g));
+        popIn(appeared);
       });
-      treffer.textContent = `(${shown})`;
-      leer.hidden = shown > 0;
+    }
+
+    // Alle Tipps: Level, Kategorie, „Mehr anzeigen“
+    const tips = [...document.querySelectorAll<HTMLElement>('#tips .tip-card')];
+    const sel = document.querySelector<HTMLSelectElement>('#cat-filter')!;
+    const more = document.querySelector<HTMLButtonElement>('#more')!;
+    const treffer = document.querySelector('#treffer')!;
+    let level = '';
+    let limit = STEP;
+    function apply() {
+      const match = tips.filter((el) => (!level || el.dataset.level === level) && (!sel.value || el.dataset.cat === sel.value));
+      const visible = new Set(match.slice(0, limit));
+      const appeared: HTMLElement[] = [];
+      for (const el of tips) {
+        const on = visible.has(el);
+        if (on && el.hidden) appeared.push(el);
+        el.hidden = !on;
+      }
+      treffer.textContent = `${match.length} Tipps.`;
+      const rest = match.length - visible.size;
+      more.hidden = rest <= 0;
+      more.textContent = `Mehr anzeigen (${rest} weitere)`;
       popIn(appeared);
     }
-
-    q.addEventListener('input', apply);
-    for (const chip of chips) {
-      chip.addEventListener('click', () => {
-        level = chip.dataset.level ?? '';
-        chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
-        apply();
-      });
-    }
+    onLevelFilter(document.querySelector('#alle')!, (l) => { level = l; limit = STEP; apply(); });
+    sel.addEventListener('change', () => { limit = STEP; apply(); });
+    more.addEventListener('click', () => { limit += STEP; apply(); });
     apply();
   });
 </script>

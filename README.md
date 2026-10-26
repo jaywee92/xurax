@@ -6,8 +6,9 @@ Eine Sammlung von Tipps & Tricks für Claude (Claude.ai, Claude Code, API), auf 
 
 - **[Astro](https://astro.build)** als Static-Site-Generator: baut reines HTML, kein Server und keine Datenbank nötig.
 - **`src/data/tips.json`** ist die einzige Datenquelle (150 Tipps, 17 Kategorien, Level, Quellen).
-- **Suche & Level-Filter** laufen mit ein paar Zeilen Vanilla-JS direkt im Browser.
-- **Eine Seite pro Kategorie** unter `/kategorie/<id>/` (gut für Google).
+- **Startseite:** Suche (Fuse.js, unscharf), Partikel-Kugel, Startpfad mit 5 Einsteiger-Tipps, Tipp des Tages, Kategorien nach Bereich, alle Tipps mit Level- und Kategorie-Filter.
+- **Eine Seite pro Kategorie** unter `/kategorie/<id>/` im Handbuch-Stil: Seitenleiste, nummerierte Tipps mit eigenem Link, Inhaltsverzeichnis, Vor/Zurück.
+- **Startpfad** ändern: `pathIds` in `src/lib/tips.ts`.
 - **Deploy:** GitHub Actions baut bei jedem Push auf `main` und kopiert `dist/` per `rsync` auf den VPS. Dort liefert Caddy oder nginx die Dateien aus (Beispiele in `deploy/`).
 
 ## Lokal starten

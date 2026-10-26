@@ -23,9 +23,9 @@ function heroIntro() {
   const hero = document.querySelector<HTMLElement>('.hero');
   if (!hero) return;
   const title = hero.querySelector('h1');
-  const rest = hero.querySelectorAll('.hero-copy > :not(h1), .hero-actions > *');
+  const rest = hero.querySelectorAll('.hero-copy > :not(h1)');
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-  gsap.set('.hero-copy, .hero-actions', { autoAlpha: 1 });
+  gsap.set('.hero-copy', { autoAlpha: 1 });
   if (title) {
     const split = SplitText.create(title, { type: 'words,chars', mask: 'words' });
     tl.from(split.chars, { yPercent: 110, duration: 0.8, stagger: 0.018 });
@@ -40,8 +40,7 @@ function heroIntro() {
 }
 
 function scrollEffects() {
-  const featured = document.querySelector('.featured');
-  if (featured) {
+  for (const featured of document.querySelectorAll('.path, .day')) {
     gsap.from(featured, {
       scale: 0.94,
       autoAlpha: 0,
@@ -50,17 +49,11 @@ function scrollEffects() {
       scrollTrigger: { trigger: featured, start: 'top 85%' },
     });
   }
-  gsap.to('.hero-copy, .hero-actions', {
-    yPercent: -8,
-    opacity: 0.4,
-    ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-  });
 }
 
 function reveals() {
-  for (const group of document.querySelectorAll('.cat-grid, .tip-grid, .tip-list')) {
-    const items = group.querySelectorAll<HTMLElement>('.cat, .tip');
+  for (const group of document.querySelectorAll('.cat-cards, .tip-cards, .tip-rows')) {
+    const items = group.querySelectorAll<HTMLElement>('.cat-card, .tip-card, .tip-row');
     items.forEach((el) => (el.style.opacity = '0'));
     inView(
       group,
@@ -71,7 +64,7 @@ function reveals() {
     );
   }
 
-  hover('.cat, .tip', (el) => {
+  hover('.cat-card, .path li a', (el) => {
     animate(el, { y: -3, boxShadow: '0 10px 30px -12px rgb(15 23 42 / 0.25)' }, { type: 'spring', stiffness: 400, damping: 25 });
     return () => animate(el, { y: 0, boxShadow: '0 0 0 0 rgb(15 23 42 / 0)' }, { type: 'spring', stiffness: 400, damping: 30 });
   });
@@ -101,7 +94,7 @@ document.addEventListener('astro:before-swap', () => {
   stopParticles = undefined;
 });
 
-// Für die Suche: neu eingeblendete Tipps sanft animieren.
+// Für Filter: neu eingeblendete Einträge sanft animieren.
 export function popIn(els: HTMLElement[]) {
   if (reduced || els.length === 0) return;
   animate(els.slice(0, 40), { opacity: [0, 1], scale: [0.97, 1] }, { duration: 0.25, delay: stagger(0.015) });

@@ -1,0 +1,8 @@
+---
+import { levels } from '../lib/tips';
+---
+
+<div class="seg" role="group" aria-label="Nach Level filtern" data-level-filter>
+  <button type="button" data-level="" aria-pressed="true">Alle</button>
+  {levels.map((l) => <button type="button" data-level={l} aria-pressed="false">{l}</button>)}
+</div>

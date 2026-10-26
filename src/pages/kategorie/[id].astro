@@ -1,21 +1,90 @@
 ---
 import Base from '../../layouts/Base.astro';
-import TipCard from '../../components/TipCard.astro';
-import { categories, type Category } from '../../lib/tips';
+import TipRow from '../../components/TipRow.astro';
+import LevelBar from '../../components/LevelBar.astro';
+import LevelFilter from '../../components/LevelFilter.astro';
+import LevelLegend from '../../components/LevelLegend.astro';
+import { categories, countByLevel, groupOf, groups, levels, shortName, type Category } from '../../lib/tips';
 
 export function getStaticPaths() {
   return categories.map((category) => ({ params: { id: category.id }, props: { category } }));
 }
 
 const { category } = Astro.props as { category: Category };
+const counts = countByLevel(category.tips);
+const idx = categories.indexOf(category);
+const prev = categories[idx - 1];
+const next = categories[idx + 1];
 ---
 
 <Base title={`${category.name} – xurax`} description={category.description}>
-  <nav aria-label="Brotkrumen" class="crumbs"><a href="/">Start</a> / {category.name}</nav>
-  <h1>{category.name}</h1>
-  <p class="lead">{category.description} {category.tips.length} Tipps.</p>
-  <div class="tip-list">
-    {category.tips.map((tip) => <TipCard tip={tip} />)}
+  <div class="container doc">
+    <nav class="doc-side" aria-label="Kategorien">
+      {groups.map((g) => (
+        <>
+          <h4>{g.name}</h4>
+          {g.categories.map((c) => (
+            <a href={`/kategorie/${c.id}/`} aria-current={c === category ? 'page' : undefined}>
+              <span>{shortName(c.name)}</span><span>{c.tips.length}</span>
+            </a>
+          ))}
+        </>
+      ))}
+    </nav>
+
+    <article class="doc-main">
+      <details class="doc-mnav">
+        <summary>Alle Kategorien</summary>
+        {categories.map((c) => <a href={`/kategorie/${c.id}/`} aria-current={c === category ? 'page' : undefined}>{shortName(c.name)} <span>{c.tips.length}</span></a>)}
+      </details>
+      <nav aria-label="Pfad" class="crumb"><a href="/">Start</a><span>/</span><a href="/#kategorien">{groupOf(category.id)}</a><span>/</span><span>{shortName(category.name)}</span></nav>
+      <h1>{category.name}</h1>
+      <p class="lead">{category.description}</p>
+      <div class="doc-meta">
+        <span>{category.tips.length} Tipps</span>
+        <LevelBar tips={category.tips} />
+        <span>{levels.map((l) => `${counts[l]} ${l}`).join(' · ')}</span>
+      </div>
+      <div class="doc-filter">
+        <LevelFilter />
+        <LevelLegend />
+      </div>
+      <div class="tip-rows" id="tips">
+        {category.tips.map((tip, i) => <TipRow tip={tip} n={i + 1} />)}
+      </div>
+      <p id="leer" class="muted" hidden>Keine Tipps in diesem Level.</p>
+      <nav class="pager" aria-label="Weitere Kategorien">
+        {prev && <a href={`/kategorie/${prev.id}/`}><span>← Vorherige</span><b>{shortName(prev.name)}</b></a>}
+        {next && <a class="next" href={`/kategorie/${next.id}/`}><span>Nächste →</span><b>{shortName(next.name)}</b></a>}
+      </nav>
+    </article>
+
+    <aside class="toc" aria-label="Auf dieser Seite">
+      <p>Auf dieser Seite</p>
+      {category.tips.map((tip) => <a href={`#${tip.id}`} data-level={tip.level}>{tip.title}</a>)}
+    </aside>
   </div>
-  <p><a href="/#kategorien">← Alle Kategorien</a></p>
 </Base>
+
+<script>
+  import { popIn } from '../../scripts/motion';
+  import { onLevelFilter } from '../../scripts/site';
+
+  document.addEventListener('astro:page-load', () => {
+    const rows = [...document.querySelectorAll<HTMLElement>('.tip-row')];
+    if (!rows.length) return;
+    const toc = [...document.querySelectorAll<HTMLElement>('.toc a')];
+    const leer = document.querySelector<HTMLElement>('#leer')!;
+    onLevelFilter(document, (level) => {
+      const appeared: HTMLElement[] = [];
+      rows.forEach((el) => {
+        const on = !level || el.dataset.level === level;
+        if (on && el.hidden) appeared.push(el);
+        el.hidden = !on;
+      });
+      toc.forEach((a) => (a.hidden = Boolean(level) && a.dataset.level !== level));
+      leer.hidden = rows.some((el) => !el.hidden);
+      popIn(appeared);
+    });
+  });
+</script>

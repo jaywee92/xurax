@@ -1,34 +1,19 @@
 ---
-import { sourcesFor, type Tip } from '../lib/tips';
+import { shortName, tipUrl, type Category, type Tip } from '../lib/tips';
 
 interface Props {
   tip: Tip;
-  category?: string;
+  category: Category;
 }
 
 const { tip, category } = Astro.props;
-const sources = sourcesFor(tip);
 ---
 
-<article
-  class="tip"
-  id={tip.id}
-  data-level={tip.level}
-  data-search={`${tip.title} ${tip.text} ${category ?? ''}`.toLowerCase()}
->
+<article class="tip-card" data-level={tip.level} data-cat={category.id}>
   <div class="tip-meta">
     <span class={`badge badge-${tip.level.toLowerCase()}`}>{tip.level}</span>
-    {category && <span class="tip-cat">{category}</span>}
+    <a href={`/kategorie/${category.id}/`}>{shortName(category.name)}</a>
   </div>
-  <h3>{tip.title}</h3>
+  <h3><a href={tipUrl(category, tip)}>{tip.title}</a></h3>
   <p>{tip.text}</p>
-  <p class="tip-src">
-    Quelle:{" "}
-    {sources.map((s, i) => (
-      <>
-        {i > 0 && ', '}
-        <a href={s.url} rel="noopener">{s.title}</a> ({s.type})
-      </>
-    ))}
-  </p>
 </article>
