@@ -46,8 +46,8 @@
             {
               "id": "anthropic-frontend-plugin",
               "name": "Frontend-Design-Plugin für Claude Code",
-              "url": "https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design",
-              "description": "Offizielles Plugin im Claude-Code-Repository. Es gibt Claude beim Bauen von Oberflächen klare Gestaltungsregeln mit, statt bei jedem Prompt neu zu erklären.",
+              "url": "https://github.com/anthropics/claude-plugins-official",
+              "description": "Offizielles Plugin aus dem Anthropic-Marktplatz claude-plugins-official. Es gibt Claude beim Bauen von Oberflächen klare Gestaltungsregeln mit, statt bei jedem Prompt neu zu erklären.",
               "price": "kostenlos",
               "tags": [
                 "Offiziell",
@@ -57,7 +57,7 @@
               "handoff": {
                 "kind": "command",
                 "label": "In Claude Code installieren",
-                "code": "/plugin marketplace add anthropics/claude-code\n/plugin install frontend-design@claude-code-plugins"
+                "code": "/plugin install frontend-design@claude-plugins-official"
               }
             }
           ]
