@@ -23,26 +23,45 @@ jobs:
           path: dist
 
   deploy:
-    # Läuft nur auf main und nur, wenn die Secrets gesetzt sind.
+    # Läuft nur auf main (Push oder manuell gestartet), nie für Pull Requests.
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
+    concurrency:
+      group: deploy
+      cancel-in-progress: false
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
+
+      # SSH auf dem VPS ist nicht öffentlich: Es läuft über den Cloudflare
+      # Tunnel (VPS_HOST = ssh.xovex.de), vor dem Cloudflare Access steht.
+      # Der Runner kommt mit einem Service-Token durch.
+      - name: cloudflared installieren
+        run: |
+          curl -fsSL -o cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+          sudo dpkg -i cloudflared.deb
+
       - name: Auf den VPS kopieren
         env:
           SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
           HOST: ${{ secrets.VPS_HOST }}
           USER: ${{ secrets.VPS_USER }}
-          TARGET: ${{ secrets.VPS_PATH || '/var/www/xurax.de' }}
+          CF_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
         run: |
-          if [ -z "$SSH_KEY" ] || [ -z "$HOST" ] || [ -z "$USER" ]; then
-            echo "VPS-Secrets fehlen, Deploy übersprungen."; exit 0
-          fi
-          mkdir -p ~/.ssh
-          echo "$SSH_KEY" > ~/.ssh/id_deploy && chmod 600 ~/.ssh/id_deploy
-          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
-          rsync -az --delete -e "ssh -i ~/.ssh/id_deploy" dist/ "$USER@$HOST:$TARGET/"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy && chmod 600 ~/.ssh/id_deploy
+          # Host-Key aus dem Secret: ssh-keyscan kommt nicht durch den Tunnel.
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          # Der Schlüssel darf auf dem Server nur per rrsync nach
+          # /var/www/xurax.de schreiben; "/" ist dort genau dieser Ordner.
+          rsync -az --delete --chmod=D755,F644 \
+            -e "ssh -i ~/.ssh/id_deploy -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o ProxyCommand='cloudflared access ssh --hostname %h --id $CF_ID --secret $CF_SECRET'" \
+            dist/ "$USER@$HOST:/"
+
+      - name: Seite prüfen
+        run: curl -fsS -o /dev/null -w 'https://xurax.de -> %{http_code}\n' https://xurax.de/
