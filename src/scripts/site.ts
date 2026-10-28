@@ -55,3 +55,21 @@ export function onLevelFilter(root: ParentNode, cb: (level: string) => void) {
     });
   }
 }
+
+// „Kopieren“-Knöpfe bei Prompts und Befehlen.
+document.addEventListener('click', async (e) => {
+  const b = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-copy]');
+  if (!b) return;
+  const done = (label: string) => {
+    b.textContent = label;
+    setTimeout(() => (b.textContent = 'Kopieren'), 1600);
+  };
+  try {
+    await navigator.clipboard.writeText(b.dataset.copy ?? '');
+    done('Kopiert');
+  } catch {
+    const code = b.parentElement?.querySelector('code');
+    if (code) getSelection()?.selectAllChildren(code);
+    done('Markiert');
+  }
+});

@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import ResourceCard from './ResourceCard.astro';
+import { checked, countItems, resourceSections, sectionById } from '../lib/resources';
+
+interface Props {
+  id: string;
+}
+
+const section = sectionById(Astro.props.id);
+const other = resourceSections.find((s) => s !== section)!;
+const hasOfficial = section.groups.some((g) => g.items.some((i) => i.tags.includes('Offiziell')));
+---
+
+<Base title={`${section.name} – xurax`} description={section.description}>
+  <div class="container res-page">
+    <header class="res-head">
+      <nav aria-label="Pfad" class="crumb"><a href="/">Start</a><span>/</span><span>{section.short}</span></nav>
+      <h1>{section.name}</h1>
+      <p class="lead">{section.description}</p>
+      <p class="res-meta">{countItems(section)} Einträge · zuletzt geprüft am {checked} · Vorschaubilder stammen von den jeweiligen Websites</p>
+    </header>
+
+    <div class="res-tools">
+      <nav class="res-jump" aria-label="Abschnitte">
+        {section.groups.map((g) => <a href={`#${g.id}`}>{g.name} <span>{g.items.length}</span></a>)}
+      </nav>
+      <div class="seg" role="group" aria-label="Filter" id="res-filter">
+        <button type="button" data-f="" aria-pressed="true">Alle</button>
+        <button type="button" data-f="free" aria-pressed="false">Kostenlos nutzbar</button>
+        <button type="button" data-f="mcp" aria-pressed="false">Mit MCP</button>
+        {hasOfficial && <button type="button" data-f="official" aria-pressed="false">Offiziell</button>}
+      </div>
+    </div>
+
+    {section.groups.map((g) => (
+      <section class="res-group" id={g.id} aria-labelledby={`${g.id}-h`}>
+        <h2 id={`${g.id}-h`}>{g.name}</h2>
+        <div class="res-grid">{g.items.map((item) => <ResourceCard item={item} />)}</div>
+      </section>
+    ))}
+    <p id="res-leer" class="muted" hidden>Kein Eintrag passt zu diesem Filter.</p>
+
+    <a class="res-next" href={`/${other.id}/`}>
+      <span class="eyebrow">Weiter zu</span>
+      <b>{other.name}</b>
+      <span>{other.description}</span>
+    </a>
+  </div>
+</Base>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const box = document.querySelector('#res-filter');
+    if (!box) return;
+    const buttons = [...box.querySelectorAll<HTMLButtonElement>('button')];
+    const cards = [...document.querySelectorAll<HTMLElement>('.res-card')];
+    const groups = [...document.querySelectorAll<HTMLElement>('.res-group')];
+    for (const b of buttons) {
+      b.addEventListener('click', () => {
+        buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        const f = b.dataset.f;
+        for (const c of cards) c.hidden = !!f && c.dataset[f] !== 'true';
+        for (const g of groups) g.hidden = !g.querySelector('.res-card:not([hidden])');
+        document.querySelector<HTMLElement>('#res-leer')!.hidden = groups.some((g) => !g.hidden);
+      });
+    }
+  });
+</script>
