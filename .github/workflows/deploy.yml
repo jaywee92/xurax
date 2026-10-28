@@ -44,7 +44,24 @@ jobs:
           curl -fsSL -o cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
           sudo dpkg -i cloudflared.deb
 
+      # Schnelltest vor dem rsync: Lässt Cloudflare Access das Service-Token
+      # durch? Sonst wartet cloudflared minutenlang auf einen Browser-Login.
+      - name: Cloudflare Access prüfen
+        env:
+          HOST: ${{ secrets.VPS_HOST }}
+          CF_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 \
+            -H "CF-Access-Client-Id: $CF_ID" -H "CF-Access-Client-Secret: $CF_SECRET" "https://$HOST/")
+          echo "Antwort von Cloudflare Access: HTTP $code"
+          if [ "$code" = "302" ] || [ "$code" = "401" ] || [ "$code" = "403" ]; then
+            echo "::error::Cloudflare Access lässt das Service-Token nicht durch (HTTP $code). An der Access-Application für den SSH-Host muss eine Policy mit Action 'Service Auth' und genau diesem Token hängen; Client-ID und Secret müssen zum selben Token gehören."
+            exit 1
+          fi
+
       - name: Auf den VPS kopieren
+        timeout-minutes: 5
         env:
           SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
           KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
