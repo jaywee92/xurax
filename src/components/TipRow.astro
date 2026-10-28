@@ -16,15 +16,17 @@ const sources = sourcesFor(tip);
     <h3>{tip.title} <span class={`badge badge-${tip.level.toLowerCase()}`}>{tip.level}</span></h3>
     <p>{tip.text}</p>
     {sources.length > 0 && (
-      <p class="src">
-        Quelle:{' '}
-        {sources.map((s, i) => (
-          <>
-            {i > 0 && ', '}
-            <a href={s.url} rel="noopener">{s.title}</a> ({s.type})
-          </>
+      <ul class="src" aria-label="Quellen">
+        {sources.map((s) => (
+          <li>
+            <a href={s.url} rel="noopener" title={`${s.title} (${s.type})`} class={s.type === 'offiziell' ? 'official' : undefined}>
+              {s.type === 'offiziell' && <span class="dot" aria-hidden="true"></span>}
+              <span class="t">{s.title}</span>
+              <span class="sr-only"> ({s.type})</span>
+            </a>
+          </li>
         ))}
-      </p>
+      </ul>
     )}
   </div>
 </article>
