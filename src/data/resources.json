@@ -1,0 +1,455 @@
+{
+  "checked": "2026-10-28",
+  "sections": [
+    {
+      "id": "prompts",
+      "name": "Prompts für Layouts & Websites",
+      "short": "Prompts",
+      "description": "Seiten mit fertigen Prompts und Stil-Vorlagen, mit denen Claude bessere Layouts und Websites baut. Prompt kopieren, anpassen, an Claude geben.",
+      "groups": [
+        {
+          "id": "offiziell",
+          "name": "Offiziell von Anthropic",
+          "items": [
+            {
+              "id": "anthropic-frontend-skills",
+              "name": "Frontend-Design mit Skills",
+              "url": "https://claude.com/blog/improving-frontend-design-through-skills",
+              "description": "Anthropic erklärt, warum Claude ohne Vorgaben zu Standard-Designs greift (Inter, lila Verläufe) und wie klare Vorgaben zu Schrift, Farben, Bewegung und Hintergrund das ändern. Mit Links zum Plugin und zum Cookbook.",
+              "price": "kostenlos",
+              "tags": [
+                "Offiziell",
+                "Anleitung"
+              ],
+              "handoff": {
+                "kind": "prompt",
+                "label": "So formulierst du es",
+                "code": "Gestalte die Seite im Stil eines [konkretes Thema, z. B. Fachmagazin für Bergsport]. Nutze zwei kontrastreiche Schriften statt Inter, Farben als CSS-Variablen, eine gestaffelte Einblend-Animation beim Laden und einen Hintergrund mit Tiefe statt einer flachen Farbe."
+              }
+            },
+            {
+              "id": "anthropic-frontend-cookbook",
+              "name": "Cookbook: Prompting for frontend aesthetics",
+              "url": "https://github.com/anthropics/claude-cookbooks/blob/main/coding/prompting_for_frontend_aesthetics.ipynb",
+              "description": "Notebook mit Prompt-Bausteinen für Typografie, Farben, Themen und Animationen. Gut, um einen eigenen System-Prompt oder Skill für Designs zu bauen.",
+              "price": "kostenlos",
+              "tags": [
+                "Offiziell",
+                "Prompts"
+              ],
+              "handoff": {
+                "kind": "hint",
+                "label": "So nutzt du es",
+                "text": "Übernimm die Bausteine in deine CLAUDE.md oder in einen eigenen Skill. Dann gelten sie für jede Seite, die Claude baut."
+              }
+            },
+            {
+              "id": "anthropic-frontend-plugin",
+              "name": "Frontend-Design-Plugin für Claude Code",
+              "url": "https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design",
+              "description": "Offizielles Plugin im Claude-Code-Repository. Es gibt Claude beim Bauen von Oberflächen klare Gestaltungsregeln mit, statt bei jedem Prompt neu zu erklären.",
+              "price": "kostenlos",
+              "tags": [
+                "Offiziell",
+                "Claude Code",
+                "Plugin"
+              ],
+              "handoff": {
+                "kind": "command",
+                "label": "In Claude Code installieren",
+                "code": "/plugin marketplace add anthropics/claude-code\n/plugin install frontend-design@claude-code-plugins"
+              }
+            }
+          ]
+        },
+        {
+          "id": "sammlungen",
+          "name": "Prompt-Sammlungen",
+          "items": [
+            {
+              "id": "websiteprompts",
+              "name": "Website Prompts",
+              "url": "https://websiteprompts.com/",
+              "description": "139 fertige Prompts für ganze Websites in 11 Bereichen, von SaaS über Portfolio bis Restaurant. Für Claude, ChatGPT, v0, Cursor, Bolt und Lovable. Mit Vorschau des Ergebnisses.",
+              "price": "kostenlos",
+              "tags": [
+                "Ganze Websites",
+                "Ohne Anmeldung"
+              ],
+              "handoff": {
+                "kind": "steps",
+                "label": "So nutzt du es",
+                "text": "Prompt kopieren, Platzhalter wie Firmenname und Farben ersetzen, in Claude einfügen und als Artifact bauen lassen."
+              }
+            },
+            {
+              "id": "uidesignprompts",
+              "name": "UI Design Prompts",
+              "url": "https://uidesignprompts.com/",
+              "description": "29 Design-Stile, jeder mit Farbpalette, Schrift- und Abstandsregeln und einem Prompt zum Einfügen. Jede Vorlage hat eine Live-Vorschau für Desktop und Handy, dazu 12 Layout-Muster.",
+              "price": "ohne Preisangabe",
+              "tags": [
+                "Stile",
+                "Live-Vorschau"
+              ],
+              "handoff": {
+                "kind": "steps",
+                "label": "So nutzt du es",
+                "text": "Stil in der Vorschau aussuchen, Prompt kopieren und vor deine eigentliche Anfrage setzen."
+              }
+            },
+            {
+              "id": "vibeprompts",
+              "name": "Vibe Prompts",
+              "url": "https://vibeprompts.dev/",
+              "description": "286 Layout-Prompts in 15 Kategorien, zum Beispiel Dashboards und Landingpages. Das Ergebnis ist Tailwind-CSS-Markup. Jeder Prompt hat ein Vorschaubild.",
+              "price": "ohne Preisangabe",
+              "tags": [
+                "Layouts",
+                "Tailwind"
+              ],
+              "handoff": {
+                "kind": "steps",
+                "label": "So nutzt du es",
+                "text": "Layout aussuchen, Prompt kopieren, in Claude einfügen und um deine Inhalte ergänzen."
+              }
+            },
+            {
+              "id": "superdesign",
+              "name": "Superdesign Prompt-Bibliothek",
+              "url": "https://superdesign.dev/docs/features/design-agent/prompt-library",
+              "description": "Von der Community gesammelte Prompts in vier Gruppen: Stile, Animationen, Komponenten und ganze Seiten. Funktioniert mit jedem Coding-Agent, auch mit Claude Code.",
+              "price": "ohne Preisangabe",
+              "tags": [
+                "Community",
+                "Claude Code"
+              ],
+              "handoff": {
+                "kind": "steps",
+                "label": "So nutzt du es",
+                "text": "Prompt nach Kategorie filtern, kopieren und in Claude Code als Aufgabe einfügen."
+              }
+            },
+            {
+              "id": "scrolltide",
+              "name": "Scrolltide",
+              "url": "https://www.scrolltide.co/",
+              "description": "Vorlagen für Websites mit Scroll-Animationen, jeweils mit Prompt. Über 130 Vorlagen, dazu Komponenten, Shader und Abschnitte, meist mit Video-Vorschau. Geschrieben für Claude, Cursor und v0.",
+              "price": "teils kostenlos",
+              "tags": [
+                "Animation",
+                "Video-Vorschau"
+              ],
+              "handoff": {
+                "kind": "steps",
+                "label": "So nutzt du es",
+                "text": "Vorlage aussuchen, Prompt kopieren und in Claude Code einfügen. Das Ergebnis ist ein Next.js-Projekt."
+              }
+            }
+          ]
+        },
+        {
+          "id": "designsysteme",
+          "name": "Stil-Vorlagen als Datei",
+          "items": [
+            {
+              "id": "designmd",
+              "name": "DESIGN.md",
+              "url": "https://designmd.ai/",
+              "description": "Hunderte Design-Systeme als einzelne Markdown-Datei mit Farben, Schrift und Komponenten. Claude liest die Datei und hält sich bei jeder Seite daran. Jede Vorlage hat ein Vorschaubild.",
+              "price": "kostenlos",
+              "tags": [
+                "DESIGN.md",
+                "Konsistenz"
+              ],
+              "handoff": {
+                "kind": "prompt",
+                "label": "Prompt für Claude",
+                "code": "Im Projektordner liegt eine DESIGN.md. Nutze sie als verbindliche Vorgabe für Farben, Schriften, Abstände und Komponenten auf allen Seiten."
+              }
+            },
+            {
+              "id": "refero-styles",
+              "name": "Refero Styles",
+              "url": "https://styles.refero.design/",
+              "description": "Über 2.000 Stile echter Produkt-Websites mit Screenshot, Farben, Schrift, Abständen und einer DESIGN.md-Datei. Lässt sich auch per MCP mit Claude verbinden.",
+              "price": "ohne Preisangabe",
+              "tags": [
+                "DESIGN.md",
+                "MCP",
+                "Screenshots"
+              ],
+              "handoff": {
+                "kind": "hint",
+                "label": "So nutzt du es",
+                "text": "DESIGN.md herunterladen und ins Projekt legen, oder Refero per MCP verbinden und Claude nach einem passenden Stil fragen."
+              }
+            }
+          ]
+        },
+        {
+          "id": "inspiration",
+          "name": "Inspiration zum Zeigen",
+          "items": [
+            {
+              "id": "godly",
+              "name": "Godly",
+              "url": "https://godly.website/",
+              "description": "Sammlung auffälliger Websites mit ungewöhnlichen Layouts abseits der üblichen SaaS-Vorlagen.",
+              "price": "kostenlos",
+              "tags": [
+                "Galerie"
+              ],
+              "handoff": {
+                "kind": "prompt",
+                "label": "Prompt für Claude",
+                "code": "Im Anhang ist ein Screenshot einer Seite, die mir gefällt. Übernimm Aufbau, Raster und Abstände, aber mit unseren Farben, Schriften und Texten. Kopiere keine Bilder oder Logos."
+              }
+            },
+            {
+              "id": "land-book",
+              "name": "Land-book",
+              "url": "https://land-book.com/",
+              "description": "Große Galerie mit Landingpages von Produkten, Agenturen, Portfolios und Kampagnen.",
+              "price": "kostenlos",
+              "tags": [
+                "Galerie",
+                "Landingpages"
+              ],
+              "handoff": {
+                "kind": "prompt",
+                "label": "Prompt für Claude",
+                "code": "Im Anhang ist ein Screenshot einer Landingpage. Beschreibe zuerst ihren Aufbau Abschnitt für Abschnitt, dann baue eine eigene Version für [dein Produkt]."
+              }
+            },
+            {
+              "id": "component-gallery",
+              "name": "The Component Gallery",
+              "url": "https://component.gallery/",
+              "description": "Über 2.600 Beispiele, wie bekannte Design-Systeme dieselbe Komponente lösen, etwa Tabs, Akkordeon oder Breadcrumbs.",
+              "price": "kostenlos",
+              "tags": [
+                "Komponenten",
+                "Vergleich"
+              ],
+              "handoff": {
+                "kind": "prompt",
+                "label": "Prompt für Claude",
+                "code": "Baue eine [Komponente, z. B. Tabs] nach dem Vorbild von [Design-System]. Achte auf Tastaturbedienung und ARIA-Attribute."
+              }
+            },
+            {
+              "id": "minimal-gallery",
+              "name": "Minimal Gallery",
+              "url": "https://minimal.gallery/",
+              "description": "Ausgewählte, zurückhaltende Websites. Gut, um Typografie, Weißraum und Hierarchie zu studieren.",
+              "price": "kostenlos",
+              "tags": [
+                "Galerie",
+                "Minimal"
+              ],
+              "handoff": {
+                "kind": "prompt",
+                "label": "Prompt für Claude",
+                "code": "Gestalte die Seite ruhig und minimal wie im angehängten Beispiel: viel Weißraum, eine Schriftfamilie in zwei Gewichten, eine Akzentfarbe."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "komponenten",
+      "name": "Komponenten-Bibliotheken",
+      "short": "Komponenten",
+      "description": "Bibliotheken mit Vorschau, deren Bausteine du selbst nutzen oder direkt an Claude übergeben kannst, per MCP, CLI, llms.txt oder kopiertem Code.",
+      "groups": [
+        {
+          "id": "react",
+          "name": "React & Tailwind",
+          "items": [
+            {
+              "id": "shadcn",
+              "name": "shadcn/ui",
+              "url": "https://ui.shadcn.com/",
+              "description": "Zugängliche React-Komponenten, deren Quellcode in dein Projekt kopiert wird. Der eigene MCP-Server lässt Claude Komponenten suchen und per Satz installieren, etwa „füge ein Login-Formular hinzu“.",
+              "price": "kostenlos",
+              "tags": [
+                "React",
+                "Tailwind",
+                "MCP",
+                "Open Source"
+              ],
+              "handoff": {
+                "kind": "command",
+                "label": "MCP für Claude Code einrichten",
+                "code": "pnpm dlx shadcn@latest mcp init --client claude"
+              }
+            },
+            {
+              "id": "21st",
+              "name": "21st.dev",
+              "url": "https://21st.dev/",
+              "description": "Community-Marktplatz mit Komponenten, Themes und Vorlagen, alle mit Live-Vorschau. Du kopierst einen Prompt und Claude Code baut die Komponente passend zu deinem Theme. Auch per CLI und MCP.",
+              "price": "teils kostenlos",
+              "tags": [
+                "React",
+                "Prompt kopieren",
+                "MCP"
+              ],
+              "handoff": {
+                "kind": "command",
+                "label": "Per CLI hinzufügen",
+                "code": "npx 21st add hero hero.tsx",
+                "note": "Kostenlos sind zwei kopierte Prompts oder Befehle pro Tag."
+              }
+            },
+            {
+              "id": "magicui",
+              "name": "Magic UI",
+              "url": "https://magicui.design/",
+              "description": "Über 60 animierte Komponenten und Effekte für Landingpages, Quellcode auf GitHub. Ein MCP-Server gibt Claude direkten Zugriff auf alle Komponenten.",
+              "price": "kostenlos",
+              "tags": [
+                "React",
+                "Animation",
+                "MCP"
+              ],
+              "handoff": {
+                "kind": "hint",
+                "label": "So nutzt du es",
+                "text": "MCP-Server einrichten (Anleitung unter magicui.design/docs/mcp), dann Claude z. B. um einen animierten Hero mit Marquee bitten."
+              }
+            },
+            {
+              "id": "aceternity",
+              "name": "Aceternity UI",
+              "url": "https://ui.aceternity.com/",
+              "description": "Über 100 kostenlose animierte Komponenten wie Hintergründe, Karten und Text-Effekte. In der Pro-Version gibt es dazu fertige Abschnitte und Vorlagen. Installation per shadcn-CLI oder über MCP direkt aus Claude Code.",
+              "price": "teils kostenlos",
+              "tags": [
+                "React",
+                "Animation",
+                "MCP"
+              ],
+              "handoff": {
+                "kind": "prompt",
+                "label": "Prompt nach MCP-Einrichtung",
+                "code": "Füge einen Preis-Abschnitt mit Spotlight-Effekt aus Aceternity UI hinzu."
+              }
+            },
+            {
+              "id": "reactbits",
+              "name": "React Bits",
+              "url": "https://reactbits.dev/",
+              "description": "Animierte React-Komponenten für auffällige Effekte. Die Grundversion ist kostenlos. Die Pro-Version hat viele fertige Abschnitte und lässt sich über die shadcn-Registry und MCP an Claude Code anbinden.",
+              "price": "teils kostenlos",
+              "tags": [
+                "React",
+                "Animation",
+                "Registry"
+              ],
+              "handoff": {
+                "kind": "prompt",
+                "label": "Prompt nach MCP-Einrichtung (Pro)",
+                "code": "Zeige mir alle Komponenten der Registry @reactbits-starter."
+              }
+            },
+            {
+              "id": "shadcnblocks",
+              "name": "shadcnblocks",
+              "url": "https://www.shadcnblocks.com/",
+              "description": "Riesiger Katalog mit rund 2.500 fertigen Abschnitten wie Hero, Preise oder Footer für shadcn/ui. Einige sind kostenlos, Pro kostet einmalig ab 149 $. Installation per shadcn-MCP oder Editor-Erweiterung.",
+              "price": "teils kostenlos",
+              "tags": [
+                "Blocks",
+                "shadcn",
+                "MCP"
+              ],
+              "handoff": {
+                "kind": "hint",
+                "label": "So nutzt du es",
+                "text": "shadcn-MCP einrichten (siehe shadcn/ui) und Claude nach einem passenden Block fragen, etwa „ein Preis-Abschnitt mit drei Stufen“."
+              }
+            },
+            {
+              "id": "heroui",
+              "name": "HeroUI",
+              "url": "https://heroui.com/",
+              "description": "Komplette React-Komponentenbibliothek (früher NextUI) mit eigenem Theme-System. Für die Arbeit mit KI gibt es offizielle MCP-Server, auch einen für den Umstieg von Version 2 auf 3.",
+              "price": "kostenlos",
+              "tags": [
+                "React",
+                "MCP",
+                "Open Source"
+              ],
+              "handoff": {
+                "kind": "hint",
+                "label": "So nutzt du es",
+                "text": "MCP-Server aus der HeroUI-Doku in die .mcp.json deines Projekts eintragen, Claude Code neu starten und mit /mcp prüfen."
+              }
+            }
+          ]
+        },
+        {
+          "id": "html",
+          "name": "Tailwind & HTML",
+          "items": [
+            {
+              "id": "daisyui",
+              "name": "daisyUI",
+              "url": "https://daisyui.com/",
+              "description": "Tailwind-Plugin mit Klassen wie btn und card, dazu fertige Themes. Funktioniert ohne React. Für Claude gibt es eine llms.txt, die du einfach an den Anfang deines Prompts stellst.",
+              "price": "kostenlos",
+              "tags": [
+                "Tailwind",
+                "llms.txt",
+                "Open Source"
+              ],
+              "handoff": {
+                "kind": "prompt",
+                "label": "Prompt für Claude (mit Websuche)",
+                "code": "https://daisyui.com/llms.txt\nGib mir ein helles daisyUI-5-Theme mit tropischer Farbpalette."
+              }
+            },
+            {
+              "id": "flowbite",
+              "name": "Flowbite",
+              "url": "https://flowbite.com/",
+              "description": "Tailwind-Komponenten mit Vorschau, nutzbar ohne React. Der offizielle MCP-Server kennt über 60 davon, macht aus Figma-Entwürfen Code und erzeugt ein Theme aus deiner Markenfarbe.",
+              "price": "teils kostenlos",
+              "tags": [
+                "Tailwind",
+                "MCP",
+                "Figma"
+              ],
+              "handoff": {
+                "kind": "command",
+                "label": "MCP-Server (in der Claude-Konfiguration)",
+                "code": "npx -y flowbite-mcp",
+                "note": "Ein Figma-Token brauchst du nur für die Figma-Funktion."
+              }
+            },
+            {
+              "id": "uiverse",
+              "name": "Uiverse",
+              "url": "https://uiverse.io/",
+              "description": "Große Community-Sammlung mit Buttons, Loadern, Karten und Formularen. Jedes Element lässt sich als HTML/CSS, Tailwind, React oder Figma kopieren, frei auch für kommerzielle Projekte.",
+              "price": "kostenlos",
+              "tags": [
+                "HTML/CSS",
+                "Tailwind",
+                "Community"
+              ],
+              "handoff": {
+                "kind": "prompt",
+                "label": "Prompt für Claude",
+                "code": "Baue dieses Element in meine Seite ein und passe Farben und Schrift an unser Design an:\n[kopierter Code von Uiverse]"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

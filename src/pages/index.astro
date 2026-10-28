@@ -1,5 +1,6 @@
 ---
 import CategoryIcon from '../components/CategoryIcon.astro';
+import { countItems, resourceSections } from '../lib/resources';
 import Base from '../layouts/Base.astro';
 import TipCard from '../components/TipCard.astro';
 import LevelBar from '../components/LevelBar.astro';
@@ -8,6 +9,11 @@ import { allTips, categories, countByLevel, groupOf, groups, levels, shortName, 
 
 const counts = countByLevel(allTips.map((t) => t.tip));
 const first = allTips[0];
+const resPool = resourceSections.flatMap((s) => s.groups.flatMap((g) => g.items.map((r) => ({ title: r.name, text: r.description + ' ' + r.tags.join(' '), cat: s.short, level: '', url: `/${s.id}/#${r.id}` }))));
+const toolIcons: Record<string, string> = {
+  prompts: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="m9 8-2 2 2 2"/><path d="m15 8 2 2-2 2"/>',
+  komponenten: '<rect width="7" height="7" x="3" y="3" rx="1.5"/><rect width="7" height="7" x="14" y="3" rx="1.5"/><rect width="7" height="7" x="3" y="14" rx="1.5"/><path d="M14 17.5h7M17.5 14v7"/>',
+};
 const pool = allTips.map(({ tip, category }) => ({ title: tip.title, text: tip.text, cat: shortName(category.name), level: tip.level, url: tipUrl(category, tip) }));
 const groupIndex = (id: string) => groups.findIndex((g) => g.name === groupOf(id));
 ---
@@ -18,7 +24,7 @@ const groupIndex = (id: string) => groups.findIndex((g) => g.name === groupOf(id
       <div class="hero-copy">
         <p class="pill"><span data-count={allTips.length}>{allTips.length}</span> Tipps · <span data-count={categories.length}>{categories.length}</span> Kategorien · kostenlos</p>
         <h1>Hol mehr aus <em>Claude</em> heraus.</h1>
-        <p class="lead">Kurze, geprüfte Tipps für Claude, Claude Code und die API. Übersichtlich sortiert, vom ersten Prompt bis zum eigenen Agenten.</p>
+        <p class="lead">Kurze, geprüfte Tipps für Claude, Claude Code und die API. Dazu Prompts für Layouts und Komponenten-Bibliotheken, die Claude direkt einbauen kann.</p>
         <div id="suche" class="search">
           <label class="field">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
@@ -87,6 +93,26 @@ const groupIndex = (id: string) => groups.findIndex((g) => g.name === groupOf(id
       </div>
     </section>
 
+    <section id="werkzeuge" class="tools-sec" aria-labelledby="werkzeuge-h">
+      <div class="sec-head">
+        <div>
+          <h2 id="werkzeuge-h">Websites bauen mit Claude</h2>
+          <p>Fertige Prompts für Layouts und Bibliotheken, deren Komponenten Claude direkt einbauen kann.</p>
+        </div>
+      </div>
+      <div class="tool-cards">
+        {resourceSections.map((s) => (
+          <a class="tool-card" href={`/${s.id}/`}>
+            <span class="tile" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={toolIcons[s.id]} /></span>
+            <b>{s.name}</b>
+            <span class="d">{s.description}</span>
+            <span class="names">{s.groups.flatMap((g) => g.items).slice(0, 5).map((i) => i.name).join(' · ')}</span>
+            <span class="go">{countItems(s)} Einträge ansehen <span aria-hidden="true">→</span></span>
+          </a>
+        ))}
+      </div>
+    </section>
+
     <section id="alle" aria-labelledby="alle-h">
       <div class="sec-head">
         <div>
@@ -113,6 +139,7 @@ const groupIndex = (id: string) => groups.findIndex((g) => g.name === groupOf(id
 </Base>
 
 <script is:inline type="application/json" id="tip-pool" set:html={JSON.stringify(pool)} />
+<script is:inline type="application/json" id="res-pool" set:html={JSON.stringify(resPool)} />
 
 <script>
   import Fuse from 'fuse.js';
@@ -139,7 +166,8 @@ const groupIndex = (id: string) => groups.findIndex((g) => g.name === groupOf(id
     document.querySelector('#zufall-next')!.addEventListener('click', () => show(Math.floor(Math.random() * pool.length)));
 
     // Suche oben: unscharf, findet auch Tippfehler wie „halluzinatonen“.
-    const fuse = new Fuse(pool, { keys: [{ name: 'title', weight: 2 }, 'text', 'cat'], threshold: 0.35, ignoreLocation: true });
+    const resPool: PoolTip[] = JSON.parse(document.querySelector('#res-pool')?.textContent ?? '[]');
+    const fuse = new Fuse([...pool, ...resPool], { keys: [{ name: 'title', weight: 2 }, 'text', 'cat'], threshold: 0.35, ignoreLocation: true });
     const q = document.querySelector<HTMLInputElement>('#q')!;
     const res = document.querySelector<HTMLElement>('#q-res')!;
     q.addEventListener('input', () => {
@@ -150,7 +178,7 @@ const groupIndex = (id: string) => groups.findIndex((g) => g.name === groupOf(id
       if (!hits.length) {
         const p = document.createElement('p');
         p.className = 'empty';
-        p.textContent = 'Kein Tipp gefunden. Versuch einen anderen Begriff.';
+        p.textContent = 'Nichts gefunden. Versuch einen anderen Begriff.';
         res.append(p);
         return;
       }
