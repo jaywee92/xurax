@@ -1,0 +1,1745 @@
+{
+  "version": 1,
+  "generated": "2026-10-25",
+  "language": "de",
+  "sources": {
+    "pe_blog": {
+      "title": "Anthropic Blog: Best practices for prompt engineering",
+      "url": "https://claude.com/blog/best-practices-for-prompt-engineering",
+      "type": "offiziell"
+    },
+    "pe_docs": {
+      "title": "Claude Docs: Prompting best practices",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/long-context-tips",
+      "type": "offiziell"
+    },
+    "pe_over": {
+      "title": "Claude Docs: Prompt engineering overview",
+      "url": "https://platform.claude.com/docs/en/docs/build-with-claude/prompt-engineering/",
+      "type": "offiziell"
+    },
+    "halluc": {
+      "title": "Claude Docs: Reduce hallucinations",
+      "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+      "type": "offiziell"
+    },
+    "cc_best": {
+      "title": "Claude Code Docs: Best practices",
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "type": "offiziell"
+    },
+    "cc_inter": {
+      "title": "Claude Code Docs: Interactive mode",
+      "url": "https://code.claude.com/docs/en/interactive-mode",
+      "type": "offiziell"
+    },
+    "cc_costs": {
+      "title": "Claude Code Docs: Manage costs",
+      "url": "https://code.claude.com/docs/en/costs",
+      "type": "offiziell"
+    },
+    "cc_hooks": {
+      "title": "Claude Code Docs: Hooks guide",
+      "url": "https://code.claude.com/docs/en/hooks-guide",
+      "type": "offiziell"
+    },
+    "cc_teams": {
+      "title": "Anthropic: How Anthropic teams use Claude Code",
+      "url": "https://claude.com/blog/how-anthropic-teams-use-claude-code",
+      "type": "offiziell"
+    },
+    "boris": {
+      "title": "Tipps von Boris (Claude-Code-Erfinder), zusammengefasst von DeepakNess",
+      "url": "https://deepakness.com/raw/claude-code-tips/",
+      "type": "community"
+    },
+    "marmelab": {
+      "title": "Marmelab: Claude Code tips I wish I'd had from day one",
+      "url": "https://marmelab.com/blog/2026/04/24/claude-code-tips-i-wish-id-had-from-day-one.html",
+      "type": "community"
+    },
+    "agentic": {
+      "title": "Agentic Coding: 5 new Claude Code tips",
+      "url": "https://agenticcoding.substack.com/p/5-new-claude-code-tips",
+      "type": "community"
+    },
+    "memory": {
+      "title": "Help Center: Chat search and memory",
+      "url": "https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context",
+      "type": "offiziell"
+    },
+    "personal": {
+      "title": "Help Center: Personalization features",
+      "url": "https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features",
+      "type": "offiziell"
+    },
+    "styles": {
+      "title": "Anthropic: Styles",
+      "url": "https://www.anthropic.com/news/styles",
+      "type": "offiziell"
+    },
+    "research": {
+      "title": "Help Center: Using the Research feature",
+      "url": "https://support.claude.com/en/articles/11088861-using-the-research-feature",
+      "type": "offiziell"
+    },
+    "files": {
+      "title": "Help Center: Create and edit files with Claude",
+      "url": "https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude",
+      "type": "offiziell"
+    },
+    "artifacts_help": {
+      "title": "Help Center: What are artifacts",
+      "url": "https://support.claude.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them",
+      "type": "offiziell"
+    },
+    "ai_artifacts": {
+      "title": "Anthropic Blog: Claude-powered artifacts",
+      "url": "https://claude.com/blog/claude-powered-artifacts",
+      "type": "offiziell"
+    },
+    "zapier_art": {
+      "title": "Zapier: Claude Artifacts",
+      "url": "https://zapier.com/blog/claude-artifacts/",
+      "type": "community"
+    },
+    "connectors": {
+      "title": "Digital Citizen: What are Claude connectors",
+      "url": "https://www.digitalcitizen.life/what-are-claude-connectors-and-how-they-connect-claude-to-your-work-tools/",
+      "type": "community"
+    },
+    "chrome": {
+      "title": "Help Center: Get started with Claude in Chrome",
+      "url": "https://support.claude.com/en/articles/12012173-get-started-with-claude-in-chrome",
+      "type": "offiziell"
+    },
+    "voice": {
+      "title": "Help Center: Use voice mode",
+      "url": "https://support.claude.com/en/articles/11101966-use-voice-mode",
+      "type": "offiziell"
+    },
+    "cowork": {
+      "title": "Ryan & Matt Data Science: 25 Claude Cowork tips",
+      "url": "https://ryanandmattdatascience.com/claude-cowork-tips/",
+      "type": "community"
+    },
+    "limits": {
+      "title": "UC Strategies: 10 habits against Claude limits",
+      "url": "https://ucstrategies.com/news/why-you-keep-hitting-claudes-limits-and-10-habits-that-fix-it-for-good/",
+      "type": "community"
+    },
+    "limits_help": {
+      "title": "Help Center: Usage and rate limits",
+      "url": "https://support.claude.com/en/articles/9797557-usage-and-rate-limits",
+      "type": "offiziell"
+    },
+    "models": {
+      "title": "Anthropic: Choosing the right Claude model",
+      "url": "https://claude.com/resources/tutorials/choosing-the-right-claude-model",
+      "type": "offiziell"
+    },
+    "skills_eng": {
+      "title": "Anthropic Engineering: Agent Skills",
+      "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+      "type": "offiziell"
+    },
+    "workflows6": {
+      "title": "6 Claude workflows beginners should learn",
+      "url": "https://mer.vin/linkedin/6-claude-workflows-beginners-should-learn-memory-artifacts-live-dashboards-and-skills-linkedin/",
+      "type": "community"
+    },
+    "agents": {
+      "title": "Anthropic: Building effective agents",
+      "url": "https://www.anthropic.com/research/building-effective-agents",
+      "type": "offiziell"
+    },
+    "caching": {
+      "title": "Claude Docs: Prompt caching",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "type": "offiziell"
+    },
+    "citations": {
+      "title": "Claude Docs: Citations",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/citations",
+      "type": "offiziell"
+    },
+    "batches": {
+      "title": "Anthropic: Message Batches API",
+      "url": "https://claude.com/fr/resources/articles/message-batches-api",
+      "type": "offiziell"
+    },
+    "appwrite": {
+      "title": "Appwrite: Top 3 Claude features you're not using",
+      "url": "https://appwrite.io/blog/post/the-top-3-claude-features-you-are-probably-not-using",
+      "type": "community"
+    },
+    "improver": {
+      "title": "Anthropic: Prompt improver",
+      "url": "https://www.anthropic.com/news/prompt-improver",
+      "type": "offiziell"
+    },
+    "cookbook": {
+      "title": "GitHub: anthropics/claude-cookbooks",
+      "url": "https://github.com/anthropics/claude-cookbooks",
+      "type": "offiziell"
+    },
+    "tutorial": {
+      "title": "GitHub: Anthropic interactive prompt engineering tutorial",
+      "url": "https://github.com/anthropics/prompt-eng-interactive-tutorial",
+      "type": "offiziell"
+    },
+    "awesome": {
+      "title": "GitHub: hesreallyhim/awesome-claude-code",
+      "url": "https://github.com/hesreallyhim/awesome-claude-code",
+      "type": "community"
+    },
+    "awesome_list": {
+      "title": "Fast.io: Awesome Claude Code resources 2026",
+      "url": "https://www.fast.io/resources/awesome-claude-code-resources-2026",
+      "type": "community"
+    },
+    "tomsguide": {
+      "title": "Tom's Guide: 10 prompts that unlock Claude",
+      "url": "https://www.tomsguide.com/ai/stop-using-claude-like-chatgpt-10-prompts-that-unlock-its-real-potential",
+      "type": "community"
+    },
+    "secsci": {
+      "title": "Security Scientist: Claude in Chrome, Excel & PowerPoint",
+      "url": "https://www.securityscientist.net/blog/12-questions-and-answers-about-claude-in-chrome-excel-and-powerpoint/",
+      "type": "community"
+    }
+  },
+  "categories": [
+    {
+      "id": "prompting-basics",
+      "name": "Prompting-Grundlagen",
+      "description": "So formulierst du Anfragen, die beim ersten Mal sitzen.",
+      "tips": [
+        {
+          "id": "sag-genau-was-du-willst",
+          "title": "Sag genau, was du willst",
+          "text": "Claude rät nicht gern. Nenne Ziel, Inhalt und gewünschtes Ergebnis ausdrücklich. Test: Würde ein Kollege ohne Vorwissen die Aufgabe verstehen?",
+          "level": "Einsteiger",
+          "sources": [
+            "pe_blog",
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "mit-einem-verb-anfangen",
+          "title": "Mit einem Verb anfangen",
+          "text": "Starte mit „Schreibe“, „Analysiere“, „Erstelle“ statt mit langen Vorreden. So ist sofort klar, was passieren soll.",
+          "level": "Einsteiger",
+          "sources": [
+            "pe_blog"
+          ]
+        },
+        {
+          "id": "erklaere-das-warum",
+          "title": "Erkläre das Warum",
+          "text": "Begründungen helfen Claude, sinnvoll zu verallgemeinern. „Der Text wird vorgelesen, also keine Auslassungspunkte“ wirkt besser als „NIEMALS …“.",
+          "level": "Einsteiger",
+          "sources": [
+            "pe_docs",
+            "pe_blog"
+          ]
+        },
+        {
+          "id": "zielgruppe-und-zweck-nennen",
+          "title": "Zielgruppe und Zweck nennen",
+          "text": "Sag, wer das Ergebnis liest und wofür. „Erkläre es einer neugierigen 12-Jährigen“ ändert Wortwahl, Ton und Tiefe.",
+          "level": "Einsteiger",
+          "sources": [
+            "pe_blog",
+            "tomsguide"
+          ]
+        },
+        {
+          "id": "grenzen-setzen",
+          "title": "Grenzen setzen",
+          "text": "Wortzahl, Format, Ton, Anzahl der Optionen, Budget: Konkrete Rahmen führen zu passgenaueren Antworten.",
+          "level": "Einsteiger",
+          "sources": [
+            "pe_blog",
+            "tomsguide"
+          ]
+        },
+        {
+          "id": "ausgabeformat-vorgeben",
+          "title": "Ausgabeformat vorgeben",
+          "text": "Willst du Tabelle, Liste oder Fließtext? Sag es. Wichtig: Sag, was du willst, nicht was du nicht willst („schreibe in Fließtext“ statt „kein Markdown“).",
+          "level": "Einsteiger",
+          "sources": [
+            "pe_blog",
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "ein-beispiel-zeigen",
+          "title": "Ein Beispiel zeigen",
+          "text": "Ein einziges Beispiel (One-Shot) vermittelt Format und Stil oft besser als jede Beschreibung. Mehr Beispiele (3–5, abwechslungsreich) nur, wenn eins nicht reicht.",
+          "level": "Einsteiger",
+          "sources": [
+            "pe_blog",
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "um-gruendlichkeit-bitten",
+          "title": "Um Gründlichkeit bitten",
+          "text": "Formulierungen wie „geh über die Grundlagen hinaus“ oder „so viele relevante Details wie möglich“ holen Claude aus der Minimal-Antwort.",
+          "level": "Einsteiger",
+          "sources": [
+            "pe_blog",
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "handeln-statt-vorschlagen-lassen",
+          "title": "Handeln statt vorschlagen lassen",
+          "text": "„Kannst du Änderungen vorschlagen?“ liefert Vorschläge. „Ändere diese Funktion“ liefert die Änderung.",
+          "level": "Einsteiger",
+          "sources": [
+            "pe_blog",
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "prompt-stil-antwort-stil",
+          "title": "Prompt-Stil = Antwort-Stil",
+          "text": "Ein Prompt voller Markdown erzeugt Antworten voller Markdown. Schreib so, wie die Antwort aussehen soll.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "pe_docs",
+            "pe_blog"
+          ]
+        },
+        {
+          "id": "lass-claude-zuerst-fragen-stellen",
+          "title": "Lass Claude zuerst Fragen stellen",
+          "text": "Bitte Claude, vor dem Entwurf Rückfragen zu Zielgruppe, Ton, Länge und Format zu stellen. Spart viele Korrekturrunden.",
+          "level": "Einsteiger",
+          "sources": [
+            "workflows6",
+            "cc_best"
+          ]
+        },
+        {
+          "id": "nicht-ueberladen",
+          "title": "Nicht überladen",
+          "text": "Längere Prompts sind nicht automatisch besser. Füge Techniken nur hinzu, wenn sie ein konkretes Problem lösen, und teste jede Ergänzung.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "pe_blog"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prompting-advanced",
+      "name": "Fortgeschrittenes Prompting",
+      "description": "Techniken für komplexe Aufgaben und lange Dokumente.",
+      "tips": [
+        {
+          "id": "lange-dokumente-nach-oben",
+          "title": "Lange Dokumente nach oben",
+          "text": "Bei langen Inputs (über ~20k Tokens) die Dokumente oben, die Frage ans Ende. Das kann die Qualität laut Anthropic um bis zu 30 % verbessern.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "mit-xml-tags-strukturieren",
+          "title": "Mit XML-Tags strukturieren",
+          "text": "Trenne Anweisungen, Kontext und Daten mit Tags wie <anweisungen>, <kontext>, <dokument>. Bei aktuellen Modellen reichen oft auch klare Überschriften.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "pe_docs",
+            "pe_blog"
+          ]
+        },
+        {
+          "id": "erst-zitate-dann-antwort",
+          "title": "Erst Zitate, dann Antwort",
+          "text": "Lass Claude bei langen Texten zuerst die relevanten Zitate heraussuchen und darauf aufbauend antworten. Das erdet die Antwort im echten Text.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "pe_docs",
+            "halluc"
+          ]
+        },
+        {
+          "id": "eine-einfache-rolle-reicht",
+          "title": "Eine einfache Rolle reicht",
+          "text": "Ein Satz wie „Du bist ein erfahrener Python-Entwickler“ hilft. Aufwendige Personas schränken eher ein; oft genügt es, die Perspektive direkt zu nennen.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "pe_docs",
+            "pe_blog"
+          ]
+        },
+        {
+          "id": "extended-thinking-nutzen",
+          "title": "Extended Thinking nutzen",
+          "text": "Für schwierige Probleme (Logik, Mathe, Architektur) das Nachdenken einschalten. Allgemeine Anweisungen wie „denk gründlich nach“ schlagen oft handgeschriebene Schrittpläne.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "pe_docs",
+            "appwrite"
+          ]
+        },
+        {
+          "id": "prompt-ketten-bauen",
+          "title": "Prompt-Ketten bauen",
+          "text": "Große Aufgaben in Schritte aufteilen: Entwurf → Prüfung gegen Kriterien → Überarbeitung. Jede Ausgabe wird Input des nächsten Schritts.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "pe_blog",
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "selbstcheck-einbauen",
+          "title": "Selbstcheck einbauen",
+          "text": "„Prüfe deine Antwort vor dem Abschluss gegen [Kriterien]“ fängt Fehler ab. Neueste Modelle prüfen oft schon von selbst.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "fuer-fehlende-werte-null-erlauben",
+          "title": "Für fehlende Werte null erlauben",
+          "text": "Bei Datenextraktion: Sag Claude, fehlende Felder leer bzw. null zu lassen statt zu raten.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "pe_blog"
+          ]
+        },
+        {
+          "id": "prompt-generator-und-improver",
+          "title": "Prompt-Generator und -Improver",
+          "text": "In der Claude Console gibt es Werkzeuge, die aus einer Aufgabenbeschreibung einen Prompt-Entwurf erzeugen oder bestehende Prompts verbessern.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "improver",
+            "pe_over"
+          ]
+        },
+        {
+          "id": "interaktives-tutorial-durcharbeiten",
+          "title": "Interaktives Tutorial durcharbeiten",
+          "text": "Anthropic hat ein kostenloses Prompt-Engineering-Tutorial auf GitHub (für ältere Modelle geschrieben, Grundprinzipien gelten weiter).",
+          "level": "Einsteiger",
+          "sources": [
+            "tutorial",
+            "pe_over"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accuracy",
+      "name": "Genauigkeit & Halluzinationen vermeiden",
+      "description": "Wie du verlässlichere Antworten bekommst.",
+      "tips": [
+        {
+          "id": "ich-weiss-es-nicht-erlauben",
+          "title": "„Ich weiß es nicht“ erlauben",
+          "text": "Gib Claude ausdrücklich die Erlaubnis, Unsicherheit zuzugeben. Das reduziert erfundene Antworten deutlich.",
+          "level": "Einsteiger",
+          "sources": [
+            "halluc",
+            "pe_blog"
+          ]
+        },
+        {
+          "id": "quellen-fuer-jede-aussage-verlangen",
+          "title": "Quellen für jede Aussage verlangen",
+          "text": "Lass Claude zu jeder Behauptung ein Zitat oder eine Quelle nennen und Aussagen ohne Beleg zurückziehen.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "halluc"
+          ]
+        },
+        {
+          "id": "nur-auf-bereitgestellte-dokumente-stuetzen",
+          "title": "Nur auf bereitgestellte Dokumente stützen",
+          "text": "Weise Claude an, ausschließlich die mitgegebenen Unterlagen zu nutzen und kein Allgemeinwissen.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "halluc"
+          ]
+        },
+        {
+          "id": "mehrfach-fragen-und-vergleichen",
+          "title": "Mehrfach fragen und vergleichen",
+          "text": "Den gleichen Prompt mehrfach laufen lassen (Best-of-N). Widersprüche zwischen den Antworten deuten auf Halluzinationen hin.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "halluc"
+          ]
+        },
+        {
+          "id": "denkprozess-pruefen",
+          "title": "Denkprozess prüfen",
+          "text": "Mit Extended Thinking kannst du die zusammengefasste Begründung lesen und so falsche Annahmen erkennen.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "halluc"
+          ]
+        },
+        {
+          "id": "wichtiges-immer-gegenpruefen",
+          "title": "Wichtiges immer gegenprüfen",
+          "text": "Diese Techniken verringern Fehler, beseitigen sie aber nicht. Bei kritischen Entscheidungen Fakten selbst verifizieren.",
+          "level": "Einsteiger",
+          "sources": [
+            "halluc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "claude-ai-personal",
+      "name": "Claude.ai: Projekte, Memory & Personalisierung",
+      "description": "Einmal einrichten, nie wieder alles neu erklären.",
+      "tips": [
+        {
+          "id": "ein-projekt-pro-thema-kunde",
+          "title": "Ein Projekt pro Thema/Kunde",
+          "text": "Projekte bündeln Anweisungen, Dateien und Chats. Lade Referenzen (Styleguides, Specs, Schemas) einmal hoch statt in jedem Chat.",
+          "level": "Einsteiger",
+          "sources": [
+            "appwrite",
+            "limits"
+          ]
+        },
+        {
+          "id": "projekt-anweisungen-schreiben",
+          "title": "Projekt-Anweisungen schreiben",
+          "text": "Kurzer Systemprompt pro Projekt: Kontext, Rolle, wiederkehrende Anforderungen. Gilt nur für Chats in diesem Projekt.",
+          "level": "Einsteiger",
+          "sources": [
+            "personal",
+            "appwrite"
+          ]
+        },
+        {
+          "id": "profil-praeferenzen-setzen",
+          "title": "Profil-Präferenzen setzen",
+          "text": "Unter Einstellungen kannst du Vorlieben hinterlegen, die in allen Chats gelten: Fachbegriffe, Arbeitsweise, Kommunikationsstil. Nur wirklich allgemeingültige Dinge eintragen.",
+          "level": "Einsteiger",
+          "sources": [
+            "personal"
+          ]
+        },
+        {
+          "id": "styles-fuer-ton-und-format",
+          "title": "Styles für Ton und Format",
+          "text": "Mit Styles passt du Ton und Format an (z. B. knapp, erklärend, formell) oder lässt Claude anhand deiner Textprobe deinen eigenen Stil lernen.",
+          "level": "Einsteiger",
+          "sources": [
+            "styles",
+            "personal"
+          ]
+        },
+        {
+          "id": "memory-gezielt-nutzen",
+          "title": "Memory gezielt nutzen",
+          "text": "Claude merkt sich Themen während des Chats. Sag einfach „merk dir das“. Unter Einstellungen → Your Claude → Manage kannst du Erinnerungen ansehen, bearbeiten und löschen.",
+          "level": "Einsteiger",
+          "sources": [
+            "memory"
+          ]
+        },
+        {
+          "id": "vergangene-chats-durchsuchen",
+          "title": "Vergangene Chats durchsuchen",
+          "text": "Auf bezahlten Plänen kann Claude frühere Chats finden: „Such unser Gespräch über …“.",
+          "level": "Einsteiger",
+          "sources": [
+            "memory"
+          ]
+        },
+        {
+          "id": "inkognito-chat-fuer-einmaliges",
+          "title": "Inkognito-Chat für Einmaliges",
+          "text": "Über das Geister-Icon startest du Chats, die nicht im Verlauf oder Memory landen. Auf allen Plänen verfügbar.",
+          "level": "Einsteiger",
+          "sources": [
+            "memory"
+          ]
+        },
+        {
+          "id": "memory-pro-chat-abschalten",
+          "title": "Memory pro Chat abschalten",
+          "text": "Im „+“-Menü vor der ersten Nachricht Memory ausschalten, wenn ein Chat nichts beeinflussen soll.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "memory"
+          ]
+        },
+        {
+          "id": "projekte-voneinander-abschotten",
+          "title": "Projekte voneinander abschotten",
+          "text": "Jedes Projekt hat eigenes Memory. Für volle Trennung „Use account memory“ im Projekt ausschalten.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "memory"
+          ]
+        },
+        {
+          "id": "chat-loeschen-erinnerung-loeschen",
+          "title": "Chat löschen ≠ Erinnerung löschen",
+          "text": "Erinnerungen aus einem gelöschten Chat bleiben. Lösche sie bei Bedarf einzeln in den Memory-Einstellungen.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "memory"
+          ]
+        },
+        {
+          "id": "memory-importieren",
+          "title": "Memory importieren",
+          "text": "Du kannst Erinnerungen aus anderen KI-Assistenten importieren oder Claudes Memory exportieren (experimentell).",
+          "level": "Fortgeschritten",
+          "sources": [
+            "memory"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "artifacts-files",
+      "name": "Artifacts & Dateien",
+      "description": "Mini-Apps, Dokumente, Tabellen und Präsentationen erstellen.",
+      "tips": [
+        {
+          "id": "artifact-ausdruecklich-anfordern",
+          "title": "Artifact ausdrücklich anfordern",
+          "text": "Claude erstellt Artifacts meist nur bei umfangreichen Inhalten. Sag „als Artifact“, wenn du ein separates Fenster willst.",
+          "level": "Einsteiger",
+          "sources": [
+            "zapier_art",
+            "artifacts_help"
+          ]
+        },
+        {
+          "id": "eigene-mini-tools-bauen",
+          "title": "Eigene Mini-Tools bauen",
+          "text": "Rechner, Tracker, Checklisten, Planer: Lass Claude kleine Werkzeuge als Artifact bauen und verfeinere sie über die Zeit.",
+          "level": "Einsteiger",
+          "sources": [
+            "workflows6",
+            "zapier_art"
+          ]
+        },
+        {
+          "id": "skizze-website",
+          "title": "Skizze → Website",
+          "text": "Lade eine Skizze oder ein Mockup hoch und lass daraus eine HTML-Seite bauen. Ein grobes Diagramm wird so zum sauberen Mermaid-Diagramm.",
+          "level": "Einsteiger",
+          "sources": [
+            "zapier_art"
+          ]
+        },
+        {
+          "id": "daten-sofort-visualisieren",
+          "title": "Daten sofort visualisieren",
+          "text": "Rohe Zahlen einfügen und um ein interaktives Diagramm bitten, statt selbst zu formatieren.",
+          "level": "Einsteiger",
+          "sources": [
+            "workflows6",
+            "tomsguide"
+          ]
+        },
+        {
+          "id": "ki-apps-teilen-ohne-zu-zahlen",
+          "title": "KI-Apps teilen, ohne zu zahlen",
+          "text": "Artifacts können selbst Claude nutzen. Wer deine App per Link öffnet, nutzt sein eigenes Claude-Kontingent, du brauchst keinen API-Key.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "ai_artifacts"
+          ]
+        },
+        {
+          "id": "echte-office-dateien-erzeugen",
+          "title": "Echte Office-Dateien erzeugen",
+          "text": "Claude kann Excel (mit Formeln und Diagrammen), Word, PowerPoint und PDF erstellen und bearbeiten. Beschreibe Struktur, Inhalt und Formatierung genau.",
+          "level": "Einsteiger",
+          "sources": [
+            "files"
+          ]
+        },
+        {
+          "id": "formate-umwandeln-und-verketten",
+          "title": "Formate umwandeln und verketten",
+          "text": "Word → Präsentation, CSV → Finanzmodell → Memo → Folien: Lass Claude Dateien in Schritten umwandeln.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "files"
+          ]
+        },
+        {
+          "id": "tabellen-aus-pdfs-ziehen",
+          "title": "Tabellen aus PDFs ziehen",
+          "text": "Bitte explizit um Extraktion: Tabellen aus einem PDF in eine Tabelle übertragen und mit Diagramm zusammenfassen.",
+          "level": "Einsteiger",
+          "sources": [
+            "files"
+          ]
+        },
+        {
+          "id": "dateigroesse-beachten",
+          "title": "Dateigröße beachten",
+          "text": "Uploads und Downloads sind auf 30 MB begrenzt. Dateierstellung verbraucht mehr Kontingent als normaler Chat.",
+          "level": "Einsteiger",
+          "sources": [
+            "files"
+          ]
+        },
+        {
+          "id": "neu-generieren-statt-flicken",
+          "title": "Neu generieren statt flicken",
+          "text": "Trifft ein Artifact nicht, nutze „Retry“ oder verfeinere über eine neue Chat-Nachricht. Die alte Version bleibt erhalten.",
+          "level": "Einsteiger",
+          "sources": [
+            "zapier_art"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "research-connectors",
+      "name": "Research, Websuche & Connectors",
+      "description": "Claude mit dem Web und deinen Tools verbinden.",
+      "tips": [
+        {
+          "id": "research-fuer-komplexe-fragen",
+          "title": "Research für komplexe Fragen",
+          "text": "Research führt verkettete Suchen über viele Quellen durch. Ideal für offene Fragen mit mehreren Blickwinkeln. Einschalten über „+“ → Research (Websuche muss aktiv sein).",
+          "level": "Einsteiger",
+          "sources": [
+            "research"
+          ]
+        },
+        {
+          "id": "research-beim-namen-nennen",
+          "title": "Research beim Namen nennen",
+          "text": "Startet die Recherche nicht, schreib: „Nutze das Research-Tool, um …“.",
+          "level": "Einsteiger",
+          "sources": [
+            "research"
+          ]
+        },
+        {
+          "id": "interne-quellen-einbeziehen",
+          "title": "Interne Quellen einbeziehen",
+          "text": "Mit Connectors (z. B. Google Workspace) kann Research auch deine Dokumente durchsuchen. Bitte gezielt: „Zieh Kontext aus [Quelle]“. Mobil wird nur das Web durchsucht.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "research"
+          ]
+        },
+        {
+          "id": "connectors-pro-chat-aktivieren",
+          "title": "Connectors pro Chat aktivieren",
+          "text": "Schalte über „+“ oder „/“ nur die Connectors ein, die die aktuelle Aufgabe braucht. Spart Kontext und Kontingent.",
+          "level": "Einsteiger",
+          "sources": [
+            "connectors",
+            "limits"
+          ]
+        },
+        {
+          "id": "bei-vielen-tools-on-demand",
+          "title": "Bei vielen Tools: On demand",
+          "text": "Hast du zehn oder mehr Connectors, stell den Tool-Zugriff von Auto auf On demand, damit Tools nur bei Bedarf geladen werden.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "connectors"
+          ]
+        },
+        {
+          "id": "custom-connectors-mit-vorsicht",
+          "title": "Custom Connectors mit Vorsicht",
+          "text": "Eigene MCP-Server werden von Anthropic nicht geprüft. Nur vertrauenswürdige Server verbinden und angeforderte Rechte kontrollieren.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "connectors"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "limits-models",
+      "name": "Nutzungslimits sparen & Modellwahl",
+      "description": "Mehr aus deinem Kontingent holen.",
+      "tips": [
+        {
+          "id": "prompt-bearbeiten-statt-nachschieben",
+          "title": "Prompt bearbeiten statt nachschieben",
+          "text": "Statt einer Korrektur-Nachricht den ursprünglichen Prompt bearbeiten und neu generieren. Fehlversuche bleiben so nicht im Verlauf.",
+          "level": "Einsteiger",
+          "sources": [
+            "limits"
+          ]
+        },
+        {
+          "id": "lange-chats-neu-starten",
+          "title": "Lange Chats neu starten",
+          "text": "Alle 15–20 Nachrichten: Zusammenfassung erstellen lassen, neuen Chat öffnen, Zusammenfassung einfügen. Jeder Turn liest sonst den ganzen Verlauf mit.",
+          "level": "Einsteiger",
+          "sources": [
+            "limits"
+          ]
+        },
+        {
+          "id": "fragen-buendeln",
+          "title": "Fragen bündeln",
+          "text": "Mehrere zusammenhängende Fragen in eine Nachricht packen statt einzeln zu senden.",
+          "level": "Einsteiger",
+          "sources": [
+            "limits"
+          ]
+        },
+        {
+          "id": "ungenutzte-features-abschalten",
+          "title": "Ungenutzte Features abschalten",
+          "text": "Websuche, Research, Connectors und Extended Thinking nur einschalten, wenn die Aufgabe sie braucht.",
+          "level": "Einsteiger",
+          "sources": [
+            "limits"
+          ]
+        },
+        {
+          "id": "das-passende-modell-waehlen",
+          "title": "Das passende Modell wählen",
+          "text": "Haiku für schnelle, einfache Aufgaben; Sonnet als Alltags-Standard; Opus für tiefes Denken und schwierige Probleme; Fable für die größten Langzeit-Projekte.",
+          "level": "Einsteiger",
+          "sources": [
+            "models"
+          ]
+        },
+        {
+          "id": "das-5-stunden-fenster-kennen",
+          "title": "Das 5-Stunden-Fenster kennen",
+          "text": "Limits laufen in einem rollierenden 5-Stunden-Fenster (plus Wochenlimit), nicht um Mitternacht. Arbeit über den Tag verteilen.",
+          "level": "Einsteiger",
+          "sources": [
+            "limits",
+            "limits_help"
+          ]
+        },
+        {
+          "id": "usage-credits-als-sicherheitsnetz",
+          "title": "Usage Credits als Sicherheitsnetz",
+          "text": "Auf bezahlten Plänen kannst du zusätzliche Nutzung mit Monatslimit freischalten, damit du nicht mitten in der Arbeit stoppst.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "limits",
+            "cc_costs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apps-surfaces",
+      "name": "Mobile, Voice, Chrome & Cowork",
+      "description": "Claude außerhalb des Browserfensters.",
+      "tips": [
+        {
+          "id": "voice-mode-unterwegs",
+          "title": "Voice Mode unterwegs",
+          "text": "In den Mobile-Apps kannst du mit Claude sprechen. Unterbrich jederzeit, wenn es in die falsche Richtung geht. Für URLs oder Code zurück zur Tastatur, der Kontext bleibt.",
+          "level": "Einsteiger",
+          "sources": [
+            "voice"
+          ]
+        },
+        {
+          "id": "push-to-talk-in-lauter-umgebung",
+          "title": "Push-to-Talk in lauter Umgebung",
+          "text": "Freihändig klappt am besten an ruhigen Orten. Sonst Push-to-Talk verwenden.",
+          "level": "Einsteiger",
+          "sources": [
+            "voice"
+          ]
+        },
+        {
+          "id": "sprache-fuer-voice-separat-einstellen",
+          "title": "Sprache für Voice separat einstellen",
+          "text": "Die gesprochene Sprache stellst du unter Einstellungen → Capabilities → Voice ein, unabhängig von der App-Sprache.",
+          "level": "Einsteiger",
+          "sources": [
+            "voice"
+          ]
+        },
+        {
+          "id": "claude-in-chrome-shortcuts-speichern",
+          "title": "Claude in Chrome: Shortcuts speichern",
+          "text": "Gute Prompts als Shortcut speichern und mit „/“ wiederverwenden, auch zeitgesteuert (täglich, wöchentlich …).",
+          "level": "Fortgeschritten",
+          "sources": [
+            "chrome"
+          ]
+        },
+        {
+          "id": "claude-in-chrome-ablaeufe-aufzeichnen",
+          "title": "Claude in Chrome: Abläufe aufzeichnen",
+          "text": "Einmal vormachen, aufzeichnen, als Shortcut speichern: Claude wiederholt wiederkehrende Browser-Aufgaben.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "chrome"
+          ]
+        },
+        {
+          "id": "mehrere-tabs-auf-einmal",
+          "title": "Mehrere Tabs auf einmal",
+          "text": "Tabs in Claudes Tab-Gruppe ziehen, damit Claude über alle hinweg lesen und handeln kann.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "chrome"
+          ]
+        },
+        {
+          "id": "cowork-fuer-mehrstufige-dateiarbeit",
+          "title": "Cowork für mehrstufige Dateiarbeit",
+          "text": "Chat für schnelle Fragen, Cowork für Aufgaben mit vielen Dateien und Schritten. Cowork verbraucht mehr Tokens.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cowork"
+          ]
+        },
+        {
+          "id": "cowork-plan-zuerst-backup-immer",
+          "title": "Cowork: Plan zuerst, Backup immer",
+          "text": "Lass Claude vor dem Handeln den Plan zeigen, sichere sensible Dateien vorher und lass ein changelog.md führen.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cowork"
+          ]
+        },
+        {
+          "id": "cowork-claude-md-im-ordner",
+          "title": "Cowork: claude.md im Ordner",
+          "text": "Eine claude.md im Arbeitsordner gibt Claude dauerhafte Anweisungen für dieses Projekt oder diesen Kunden.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cowork"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cc-workflow",
+      "name": "Claude Code: Workflow",
+      "description": "Die wichtigsten Arbeitsweisen aus den offiziellen Best Practices.",
+      "tips": [
+        {
+          "id": "gib-claude-eine-pruefmoeglichkeit",
+          "title": "Gib Claude eine Prüfmöglichkeit",
+          "text": "Tests, Build, Linter oder Screenshot-Vergleich: Mit einem Check, den Claude selbst ausführen kann, iteriert es, bis es passt. Der wichtigste Tipp überhaupt.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "erkunden-planen-umsetzen-committen",
+          "title": "Erkunden → Planen → Umsetzen → Committen",
+          "text": "Mit Shift+Tab in den Plan Mode wechseln, Claude den Code lesen und einen Plan schreiben lassen, erst dann implementieren.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best",
+            "boris",
+            "marmelab"
+          ]
+        },
+        {
+          "id": "plan-ueberspringen-wenn-s-trivial-ist",
+          "title": "Plan überspringen, wenn's trivial ist",
+          "text": "Lässt sich der Diff in einem Satz beschreiben (Tippfehler, Log-Zeile), direkt umsetzen lassen.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "konkret-statt-vage",
+          "title": "Konkret statt vage",
+          "text": "Datei, Szenario und Erwartung nennen: „Schreib einen Test für foo.py für den Fall ausgeloggter User, ohne Mocks.“",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "auf-bestehende-muster-zeigen",
+          "title": "Auf bestehende Muster zeigen",
+          "text": "„Schau dir an, wie HotDogWidget.php gebaut ist, und folge dem Muster.“ So passt neuer Code zum Rest.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "lass-dich-interviewen",
+          "title": "Lass dich interviewen",
+          "text": "Bei großen Features: Claude soll dich ausführlich befragen und daraus eine SPEC.md schreiben. Dann in frischer Session umsetzen.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "frueh-korrigieren",
+          "title": "Früh korrigieren",
+          "text": "Esc stoppt Claude sofort, der Kontext bleibt. Nach zwei erfolglosen Korrekturen lieber /clear und mit besserem Prompt neu starten.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best",
+            "marmelab"
+          ]
+        },
+        {
+          "id": "fehler-in-claude-md-festhalten",
+          "title": "Fehler in CLAUDE.md festhalten",
+          "text": "Am Ende eines Prompts: „Trag diesen Fehler in CLAUDE.md ein, damit er nicht wieder passiert.“",
+          "level": "Fortgeschritten",
+          "sources": [
+            "boris",
+            "marmelab"
+          ]
+        },
+        {
+          "id": "bugs-nicht-selbst-fixen",
+          "title": "Bugs nicht selbst fixen",
+          "text": "Lass Claude den Bug untersuchen, dokumentieren und beheben, dann lernt das Projekt mit.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "marmelab"
+          ]
+        },
+        {
+          "id": "beweise-statt-behauptungen",
+          "title": "Beweise statt Behauptungen",
+          "text": "Lass Claude Testausgabe, Befehl oder Screenshot zeigen statt „fertig“ zu sagen.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best",
+            "boris"
+          ]
+        },
+        {
+          "id": "fragen-wie-an-einen-senior-engineer",
+          "title": "Fragen wie an einen Senior-Engineer",
+          "text": "„Wie funktioniert Logging hier?“, „Warum ruft das foo() statt bar() auf?“ Ideal zum Einarbeiten in fremde Codebasen.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best",
+            "cc_teams"
+          ]
+        },
+        {
+          "id": "code-visuell-erklaeren-lassen",
+          "title": "Code visuell erklären lassen",
+          "text": "Lass Claude ASCII-Diagramme der Architektur oder eine HTML-Präsentation zum Code erstellen.",
+          "level": "Einsteiger",
+          "sources": [
+            "boris"
+          ]
+        },
+        {
+          "id": "lernmodus-einschalten",
+          "title": "Lernmodus einschalten",
+          "text": "In /config den Output-Style „Explanatory“ oder „Learning“ wählen, um beim Coden zu lernen.",
+          "level": "Einsteiger",
+          "sources": [
+            "boris"
+          ]
+        },
+        {
+          "id": "session-retro-am-ende",
+          "title": "Session-Retro am Ende",
+          "text": "Frag Claude, was es gelernt hat, und speichere die Erkenntnisse in CLAUDE.md, Skills oder Doku.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "marmelab"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cc-context",
+      "name": "Claude Code: Kontext managen",
+      "description": "Der Kontext ist die wichtigste Ressource.",
+      "tips": [
+        {
+          "id": "clear-zwischen-aufgaben",
+          "title": "/clear zwischen Aufgaben",
+          "text": "Unzusammenhängende Aufgaben brauchen einen frischen Kontext. Vorher mit /rename benennen, später mit /resume zurückkehren.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best",
+            "cc_costs"
+          ]
+        },
+        {
+          "id": "compact-mit-anweisungen",
+          "title": "/compact mit Anweisungen",
+          "text": "„/compact Fokus auf die API-Änderungen“ bestimmt, was bei der Zusammenfassung erhalten bleibt.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "zurueckspulen-mit-esc-esc",
+          "title": "Zurückspulen mit Esc Esc",
+          "text": "Doppel-Esc oder /rewind stellt Gespräch und/oder Code eines früheren Checkpoints wieder her. So kannst du Riskantes einfach ausprobieren.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best",
+            "cc_inter"
+          ]
+        },
+        {
+          "id": "nebenfragen-mit-btw",
+          "title": "Nebenfragen mit /btw",
+          "text": "Kurze Fragen, deren Antwort nicht im Verlauf landen soll, mit /btw stellen.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best",
+            "cc_inter"
+          ]
+        },
+        {
+          "id": "subagents-fuer-recherche",
+          "title": "Subagents für Recherche",
+          "text": "„Nutze Subagents, um X zu untersuchen“: Die Erkundung läuft in eigenem Kontext, zurück kommt nur die Zusammenfassung.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best",
+            "cc_costs"
+          ]
+        },
+        {
+          "id": "context-und-statusline",
+          "title": "/context und Statusline",
+          "text": "/context zeigt, was Platz frisst. Mit /statusline siehst du Kontextnutzung und Git-Branch dauerhaft.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best",
+            "boris"
+          ]
+        },
+        {
+          "id": "plan-als-uebergabe",
+          "title": "Plan als Übergabe",
+          "text": "Claude einen ausführlichen Plan schreiben lassen, dann Kontext leeren: Die neue Session startet nur mit dem Plan.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "agentic"
+          ]
+        },
+        {
+          "id": "sessions-forken",
+          "title": "Sessions forken",
+          "text": "/fork oder --fork-session verzweigt ein Gespräch, um Alternativen auszuprobieren.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "agentic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cc-config",
+      "name": "Claude Code: CLAUDE.md, Skills, Hooks & Co.",
+      "description": "Claude Code auf dein Projekt zuschneiden.",
+      "tips": [
+        {
+          "id": "mit-init-starten",
+          "title": "Mit /init starten",
+          "text": "/init erzeugt eine erste CLAUDE.md aus der Projektstruktur. Danach laufend verfeinern.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "claude-md-kurz-halten",
+          "title": "CLAUDE.md kurz halten",
+          "text": "Unter ~200 Zeilen. Pro Zeile fragen: Würde Claude ohne sie Fehler machen? Wenn nicht, streichen. Zu lange Dateien werden ignoriert.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best",
+            "cc_costs",
+            "marmelab"
+          ]
+        },
+        {
+          "id": "was-in-claude-md-gehoert",
+          "title": "Was in CLAUDE.md gehört",
+          "text": "Ja: Befehle, abweichende Code-Styles, Test-Runner, Branch-Konventionen, Eigenheiten. Nein: was Claude aus dem Code lesen kann, lange Tutorials, sich oft Änderndes.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "agents-md-importieren",
+          "title": "AGENTS.md importieren",
+          "text": "Inhalt in AGENTS.md pflegen und in CLAUDE.md mit @AGENTS.md importieren. So funktioniert es auch mit anderen Tools.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "marmelab",
+            "cc_best"
+          ]
+        },
+        {
+          "id": "important-sparsam-einsetzen",
+          "title": "IMPORTANT sparsam einsetzen",
+          "text": "Wird eine Regel übergangen, nur diese eine Zeile betonen. Wer alles betont, betont nichts.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "skills-fuer-wiederkehrendes",
+          "title": "Skills für Wiederkehrendes",
+          "text": "Eine SKILL.md unter .claude/skills/ gibt Claude Wissen oder Workflows, die nur bei Bedarf geladen werden. Aufruf auch per /skill-name.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best",
+            "boris"
+          ]
+        },
+        {
+          "id": "hooks-fuer-pflicht-aktionen",
+          "title": "Hooks für Pflicht-Aktionen",
+          "text": "Anders als CLAUDE.md laufen Hooks garantiert: z. B. Linter nach jeder Datei-Änderung, Benachrichtigung, wenn Claude wartet, Schreibschutz für Ordner. Claude kann Hooks selbst schreiben.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best",
+            "cc_hooks"
+          ]
+        },
+        {
+          "id": "eigene-subagents-definieren",
+          "title": "Eigene Subagents definieren",
+          "text": "Spezialisierte Helfer in .claude/agents/ (z. B. Security-Reviewer) mit eigenen Tools und Modell.",
+          "level": "Profi",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "plugins-aus-dem-marketplace",
+          "title": "Plugins aus dem Marketplace",
+          "text": "/plugin öffnet den Marketplace: Skills, Hooks, Subagents und MCP-Server als ein Paket. Für typisierte Sprachen ein Code-Intelligence-Plugin installieren.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best",
+            "cc_costs"
+          ]
+        },
+        {
+          "id": "mcp-server-anbinden",
+          "title": "MCP-Server anbinden",
+          "text": "claude mcp add verbindet Notion, Figma, Datenbanken & Co. Ungenutzte Server mit /mcp deaktivieren.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best",
+            "cc_costs"
+          ]
+        },
+        {
+          "id": "cli-tools-bevorzugen",
+          "title": "CLI-Tools bevorzugen",
+          "text": "gh, aws, gcloud & Co. sind kontextsparender als MCP. Unbekannte Tools lernt Claude über „tool --help“.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best",
+            "cc_costs"
+          ]
+        },
+        {
+          "id": "berechtigungen-vorab-freigeben",
+          "title": "Berechtigungen vorab freigeben",
+          "text": "Mit /permissions sichere Befehle erlauben und mit /sandbox isoliert laufen lassen. Auto Mode prüft Aktionen per Klassifikator.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cc-shortcuts",
+      "name": "Claude Code: Shortcuts & Befehle",
+      "description": "Die Tasten, die du kennen solltest.",
+      "tips": [
+        {
+          "id": "shift-tab-modus-wechseln",
+          "title": "Shift+Tab: Modus wechseln",
+          "text": "Wechselt zwischen Manual, Accept Edits, Plan Mode und Auto.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_inter"
+          ]
+        },
+        {
+          "id": "fuer-shell-befehle",
+          "title": "! für Shell-Befehle",
+          "text": "Mit ! am Anfang führst du einen Befehl direkt aus; die Ausgabe landet im Kontext.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_inter",
+            "marmelab"
+          ]
+        },
+        {
+          "id": "fuer-dateien",
+          "title": "@ für Dateien",
+          "text": "@ startet die Dateipfad-Vervollständigung. Claude liest die Datei direkt statt sie zu suchen.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_inter",
+            "cc_best"
+          ]
+        },
+        {
+          "id": "bilder-einfuegen",
+          "title": "Bilder einfügen",
+          "text": "Screenshots per Strg+V (bzw. Cmd+V in iTerm2) oder Drag & Drop einfügen.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_inter",
+            "cc_best"
+          ]
+        },
+        {
+          "id": "ctrl-g-prompt-im-editor",
+          "title": "Ctrl+G: Prompt im Editor",
+          "text": "Öffnet Prompt oder Plan in deinem Texteditor zum bequemen Bearbeiten.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_inter",
+            "cc_best"
+          ]
+        },
+        {
+          "id": "ctrl-b-in-den-hintergrund",
+          "title": "Ctrl+B: In den Hintergrund",
+          "text": "Schickt laufende Bash-Befehle und Agents in den Hintergrund, damit du weiterarbeiten kannst.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_inter"
+          ]
+        },
+        {
+          "id": "ctrl-s-prompt-parken",
+          "title": "Ctrl+S: Prompt parken",
+          "text": "Speichert den aktuellen Entwurf zwischen und holt ihn später zurück.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_inter"
+          ]
+        },
+        {
+          "id": "ctrl-r-verlauf-durchsuchen",
+          "title": "Ctrl+R: Verlauf durchsuchen",
+          "text": "Rückwärtssuche durch frühere Prompts.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_inter"
+          ]
+        },
+        {
+          "id": "alt-p-option-p-modell-wechseln",
+          "title": "Alt+P / Option+P: Modell wechseln",
+          "text": "Modell wechseln, ohne den Prompt zu verlieren.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_inter"
+          ]
+        },
+        {
+          "id": "nachrichten-einreihen",
+          "title": "Nachrichten einreihen",
+          "text": "Während Claude arbeitet, kannst du weitertippen. Die Nachricht wird eingereiht.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_inter"
+          ]
+        },
+        {
+          "id": "copy-diff-usage-insights",
+          "title": "/copy, /diff, /usage, /insights",
+          "text": "/copy kopiert die letzte Antwort, /diff zeigt Änderungen, /usage den Verbrauch, /insights einen Bericht mit Verbesserungstipps zu deiner Arbeitsweise.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "agentic",
+            "cc_inter",
+            "cc_costs"
+          ]
+        },
+        {
+          "id": "code-review-simplify-security-review",
+          "title": "/code-review, /simplify, /security-review",
+          "text": "Eingebaute Prüfungen: Bugs im Diff suchen, Over-Engineering entfernen, Sicherheitslücken finden, bevor ein Mensch reviewt.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best",
+            "marmelab"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cc-scale",
+      "name": "Claude Code: Automatisierung & Parallelität",
+      "description": "Mehrere Claudes gleichzeitig und ohne Aufsicht.",
+      "tips": [
+        {
+          "id": "claude-p-fuer-skripte",
+          "title": "claude -p für Skripte",
+          "text": "Nicht-interaktiver Modus für CI, Pre-Commit-Hooks und Pipelines. Mit --output-format json maschinenlesbar.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "parallel-mit-git-worktrees",
+          "title": "Parallel mit Git-Worktrees",
+          "text": "Mehrere Sessions in getrennten Worktrees, damit sich Änderungen nicht in die Quere kommen. Laut Boris einer der größten Produktivitäts-Hebel.",
+          "level": "Profi",
+          "sources": [
+            "boris",
+            "cc_best"
+          ]
+        },
+        {
+          "id": "writer-reviewer-muster",
+          "title": "Writer/Reviewer-Muster",
+          "text": "Eine Session schreibt, eine zweite mit frischem Kontext reviewt. Frischer Kontext ist nicht voreingenommen gegenüber eigenem Code.",
+          "level": "Profi",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "fan-out-ueber-viele-dateien",
+          "title": "Fan-out über viele Dateien",
+          "text": "Für Migrationen: Dateiliste erzeugen, dann claude -p pro Datei in einer Schleife. Erst an 2–3 Dateien testen.",
+          "level": "Profi",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "adversariales-review",
+          "title": "Adversariales Review",
+          "text": "Vor dem Abschluss einen Subagent den Diff gegen den Plan prüfen lassen, aber nur Lücken melden, die Korrektheit betreffen.",
+          "level": "Profi",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "github-actions-pr-feedback",
+          "title": "GitHub Actions & PR-Feedback",
+          "text": "Claude in GitHub Actions einbinden, um PR-Kommentare, Formatierung und Test-Refactorings automatisch zu erledigen.",
+          "level": "Profi",
+          "sources": [
+            "cc_teams"
+          ]
+        },
+        {
+          "id": "vorsicht-vor-zu-viel-parallelitaet",
+          "title": "Vorsicht vor zu viel Parallelität",
+          "text": "Viele parallele Sessions können zu Kontextwechsel-Stress führen. Klein anfangen.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "marmelab"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "api-agents",
+      "name": "API & Agenten bauen",
+      "description": "Für Entwickler, die mit der Claude API arbeiten.",
+      "tips": [
+        {
+          "id": "prompt-caching-aktivieren",
+          "title": "Prompt Caching aktivieren",
+          "text": "Lange, gleichbleibende Teile (Systemprompt, Doku) mit cache_control markieren. Spart viel Kosten und Latenz bei wiederholten Anfragen.",
+          "level": "Profi",
+          "sources": [
+            "caching",
+            "appwrite"
+          ]
+        },
+        {
+          "id": "batch-api-fuer-massenjobs",
+          "title": "Batch API für Massenjobs",
+          "text": "Nicht zeitkritische Anfragen gesammelt verarbeiten lassen, zum halben Preis.",
+          "level": "Profi",
+          "sources": [
+            "batches"
+          ]
+        },
+        {
+          "id": "citations-nutzen",
+          "title": "Citations nutzen",
+          "text": "Die API kann Antworten automatisch mit Belegstellen aus deinen Dokumenten versehen.",
+          "level": "Profi",
+          "sources": [
+            "citations"
+          ]
+        },
+        {
+          "id": "effort-statt-token-budget",
+          "title": "Effort statt Token-Budget",
+          "text": "Bei neuen Modellen steuerst du die Denktiefe über den effort-Parameter (z. B. high) statt über budget_tokens.",
+          "level": "Profi",
+          "sources": [
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "kein-prefill-mehr",
+          "title": "Kein Prefill mehr",
+          "text": "Bei neueren Modellen führt ein vorausgefüllter Assistant-Turn zu einem Fehler. Stattdessen Anweisungen oder Structured Outputs nutzen.",
+          "level": "Profi",
+          "sources": [
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "tool-sprache-entschaerfen",
+          "title": "Tool-Sprache entschärfen",
+          "text": "„Nutze dieses Tool, wenn …“ statt „KRITISCH: Du MUSST …“. Neue Modelle reagieren stark und überreagieren sonst.",
+          "level": "Profi",
+          "sources": [
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "einfach-anfangen",
+          "title": "Einfach anfangen",
+          "text": "Mit dem simpelsten Aufbau starten (Prompt-Kette, Routing) und nur dann komplexer werden, wenn es messbar besser wird.",
+          "level": "Profi",
+          "sources": [
+            "agents"
+          ]
+        },
+        {
+          "id": "tools-idiotensicher-gestalten",
+          "title": "Tools idiotensicher gestalten",
+          "text": "In Tool-Design so viel investieren wie in Prompts: klare Doku, Beispiele, z. B. absolute Pfade erzwingen.",
+          "level": "Profi",
+          "sources": [
+            "agents"
+          ]
+        },
+        {
+          "id": "erfolgskriterien-und-evals-zuerst",
+          "title": "Erfolgskriterien und Evals zuerst",
+          "text": "Messbare Ziele definieren und testen, bevor du Prompts optimierst.",
+          "level": "Profi",
+          "sources": [
+            "pe_over"
+          ]
+        },
+        {
+          "id": "claude-cookbook-nutzen",
+          "title": "Claude Cookbook nutzen",
+          "text": "Anthropics Cookbook-Repo hat fertige Rezepte für Tool Use, RAG, Multimodal, Skills und mehr.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cookbook"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "name": "Skills erstellen",
+      "description": "Wiederverwendbares Wissen für Claude.ai, Claude Code und API.",
+      "tips": [
+        {
+          "id": "was-skills-sind",
+          "title": "Was Skills sind",
+          "text": "Ordner mit einer SKILL.md (Name + Beschreibung + Anleitung) und optional Skripten. Claude lädt sie nur, wenn sie zur Aufgabe passen.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "skills_eng"
+          ]
+        },
+        {
+          "id": "beschreibung-praezise-formulieren",
+          "title": "Beschreibung präzise formulieren",
+          "text": "Name und Beschreibung entscheiden, wann Claude den Skill nutzt. Genau sagen, wofür er da ist.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "skills_eng",
+            "marmelab"
+          ]
+        },
+        {
+          "id": "skill-md-schlank-halten",
+          "title": "SKILL.md schlank halten",
+          "text": "Lange oder seltene Inhalte in verlinkte Zusatzdateien auslagern.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "skills_eng"
+          ]
+        },
+        {
+          "id": "skills-mit-claude-bauen",
+          "title": "Skills mit Claude bauen",
+          "text": "Lass Claude erfolgreiche Vorgehensweisen und häufige Fehler als Skill festhalten. In Claude.ai hilft der Skill Creator.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "skills_eng",
+            "cowork"
+          ]
+        },
+        {
+          "id": "nur-vertrauenswuerdige-skills",
+          "title": "Nur vertrauenswürdige Skills",
+          "text": "Skills können Code ausführen. Fremde Skills vor der Nutzung prüfen, besonders Skripte und Netzwerkzugriffe.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "skills_eng"
+          ]
+        },
+        {
+          "id": "wiederkehrendes-zum-slash-befehl-machen",
+          "title": "Wiederkehrendes zum Slash-Befehl machen",
+          "text": "Jede Routine, die du öfter als zweimal machst, als Skill anlegen und per / aufrufen.",
+          "level": "Einsteiger",
+          "sources": [
+            "boris",
+            "workflows6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Sicherheit & Datenschutz",
+      "description": "Sicher arbeiten mit einem Agenten, der handeln kann.",
+      "tips": [
+        {
+          "id": "sensible-daten-anonymisieren",
+          "title": "Sensible Daten anonymisieren",
+          "text": "Namen, Zahlen und Zugangsdaten vor dem Einfügen durch Platzhalter ersetzen („Kunde A“).",
+          "level": "Einsteiger",
+          "sources": [
+            "secsci"
+          ]
+        },
+        {
+          "id": "prompt-injection-kennen",
+          "title": "Prompt Injection kennen",
+          "text": "Versteckte Anweisungen auf Webseiten oder in Dokumenten können KI-Tools manipulieren. Bei Browser-Agenten besonders wachsam sein.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "chrome",
+            "secsci"
+          ]
+        },
+        {
+          "id": "riskante-aktionen-bestaetigen-lassen",
+          "title": "Riskante Aktionen bestätigen lassen",
+          "text": "Bei Agenten: Vor löschenden oder schwer umkehrbaren Aktionen (rm -rf, force push) Bestätigung verlangen.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "generierten-code-pruefen",
+          "title": "Generierten Code prüfen",
+          "text": "Code vor dem Ausführen lesen. /security-review hilft, ersetzt aber kein echtes Review.",
+          "level": "Einsteiger",
+          "sources": [
+            "marmelab",
+            "secsci"
+          ]
+        },
+        {
+          "id": "checkpoints-ersetzen-kein-git",
+          "title": "Checkpoints ersetzen kein Git",
+          "text": "Rewind erfasst nur Claudes eigene Datei-Edits, nicht Bash-Änderungen. Regelmäßig committen.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "cc_best"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "resources",
+      "name": "Ressourcen & Community",
+      "description": "Wo du weiterlernst.",
+      "tips": [
+        {
+          "id": "offizielle-claude-code-docs",
+          "title": "Offizielle Claude Code Docs",
+          "text": "Die Best-Practices-Seite ist die beste Einzelquelle für Claude Code.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_best"
+          ]
+        },
+        {
+          "id": "prompting-best-practices",
+          "title": "Prompting-Best-Practices",
+          "text": "Anthropics lebende Referenz mit modellspezifischen Hinweisen.",
+          "level": "Einsteiger",
+          "sources": [
+            "pe_docs"
+          ]
+        },
+        {
+          "id": "awesome-claude-code",
+          "title": "Awesome Claude Code",
+          "text": "Kuratierte Liste mit Skills, Hooks, Befehlen und Plugins aus der Community.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "awesome",
+            "awesome_list"
+          ]
+        },
+        {
+          "id": "wie-anthropic-teams-arbeiten",
+          "title": "Wie Anthropic-Teams arbeiten",
+          "text": "Praxisbeispiele aus Security, Legal, Marketing und Engineering bei Anthropic.",
+          "level": "Einsteiger",
+          "sources": [
+            "cc_teams"
+          ]
+        },
+        {
+          "id": "tipps-vom-claude-code-erfinder",
+          "title": "Tipps vom Claude-Code-Erfinder",
+          "text": "Boris' gesammelte Tipps: Worktrees, Plan Mode, CLAUDE.md pflegen, Skills.",
+          "level": "Fortgeschritten",
+          "sources": [
+            "boris"
+          ]
+        }
+      ]
+    }
+  ],
+  "count": 150
+}

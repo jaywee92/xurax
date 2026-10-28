@@ -1,0 +1,15 @@
+---
+import { countByLevel, levels, type Tip } from '../lib/tips';
+
+interface Props {
+  tips: Tip[];
+}
+
+const counts = countByLevel(Astro.props.tips);
+const label = levels.map((l) => `${counts[l]} ${l}`).join(', ');
+const cls = { Einsteiger: 'e', Fortgeschritten: 'f', Profi: 'p' } as const;
+---
+
+<div class="lvbar" role="img" aria-label={label}>
+  {levels.filter((l) => counts[l] > 0).map((l) => <i class={cls[l]} style={`flex:${counts[l]}`} />)}
+</div>

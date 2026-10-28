@@ -1,0 +1,19 @@
+---
+import { shortName, tipUrl, type Category, type Tip } from '../lib/tips';
+
+interface Props {
+  tip: Tip;
+  category: Category;
+}
+
+const { tip, category } = Astro.props;
+---
+
+<article class="tip-card" data-level={tip.level} data-cat={category.id}>
+  <div class="tip-meta">
+    <span class={`badge badge-${tip.level.toLowerCase()}`}>{tip.level}</span>
+    <a href={`/kategorie/${category.id}/`}>{shortName(category.name)}</a>
+  </div>
+  <h3><a href={tipUrl(category, tip)}>{tip.title}</a></h3>
+  <p>{tip.text}</p>
+</article>
