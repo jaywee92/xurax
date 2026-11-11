@@ -1,0 +1,43 @@
+---
+import { domainOf, hasMcp, isFree, previewFor, type Resource } from '../lib/resources';
+
+interface Props {
+  item: Resource;
+}
+
+const { item } = Astro.props;
+const preview = previewFor(item);
+const domain = domainOf(item.url);
+const h = item.handoff;
+---
+
+<article class="res-card" id={item.id} data-free={String(isFree(item))} data-mcp={String(hasMcp(item))} data-official={String(item.tags.includes('Offiziell'))}>
+  <a class="res-shot" href={item.url} target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+    {preview ? (
+      <img src={preview} alt="" loading="lazy" decoding="async" width="800" height="450" />
+    ) : (
+      <span class="res-fallback"><span>{domain}</span></span>
+    )}
+  </a>
+  <div class="res-body">
+    <div class="res-title">
+      <h3><a href={item.url} target="_blank" rel="noopener">{item.name}</a></h3>
+      <span class={`price price-${item.price === 'kostenlos' ? 'free' : item.price === 'teils kostenlos' ? 'part' : 'open'}`}>{item.price}</span>
+    </div>
+    <p class="res-desc">{item.description}</p>
+    <ul class="res-tags" aria-label="Merkmale">{item.tags.map((t) => <li>{t}</li>)}</ul>
+    <div class="handoff">
+      <p class="handoff-label">{h.label}</p>
+      {h.code ? (
+        <div class="handoff-code">
+          <pre><code>{h.code}</code></pre>
+          <button type="button" class="copy" data-copy={h.code}>Kopieren</button>
+        </div>
+      ) : (
+        <p class="handoff-text">{h.text}</p>
+      )}
+      {h.note && <p class="handoff-note">{h.note}</p>}
+    </div>
+    <a class="res-link" href={item.url} target="_blank" rel="noopener">{domain} <span aria-hidden="true">↗</span></a>
+  </div>
+</article>

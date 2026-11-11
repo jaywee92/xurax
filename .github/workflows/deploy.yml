@@ -16,6 +16,8 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      # Vorschaubilder für Prompts und Komponenten holen (fehlende werden übersprungen).
+      - run: node scripts/fetch-previews.mjs
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:

@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import CategoryIcon from '../../components/CategoryIcon.astro';
 import TipRow from '../../components/TipRow.astro';
 import LevelBar from '../../components/LevelBar.astro';
 import LevelFilter from '../../components/LevelFilter.astro';
@@ -38,12 +39,13 @@ const next = categories[idx + 1];
         {categories.map((c) => <a href={`/kategorie/${c.id}/`} aria-current={c === category ? 'page' : undefined}>{shortName(c.name)} <span>{c.tips.length}</span></a>)}
       </details>
       <nav aria-label="Pfad" class="crumb"><a href="/">Start</a><span>/</span><a href="/#kategorien">{groupOf(category.id)}</a><span>/</span><span>{shortName(category.name)}</span></nav>
-      <h1>{category.name}</h1>
+      <h1><span class="h-ico"><CategoryIcon id={category.id} size={26} /></span>{category.name}</h1>
       <p class="lead">{category.description}</p>
       <div class="doc-meta">
         <span>{category.tips.length} Tipps</span>
         <LevelBar tips={category.tips} />
         <span>{levels.map((l) => `${counts[l]} ${l}`).join(' · ')}</span>
+        <span class="src-hint"><span class="dot" aria-hidden="true"></span>offizielle Quelle</span>
       </div>
       <div class="doc-filter">
         <LevelFilter />

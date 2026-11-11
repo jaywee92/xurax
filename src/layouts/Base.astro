@@ -30,8 +30,9 @@ const { title, description = 'Kurze, geprüfte Tipps für Claude.ai, Claude Code
       <div class="container header-row">
         <a href="/" class="logo"><span class="logo-mark">x</span>xurax</a>
         <nav aria-label="Hauptnavigation">
-          <a href="/#kategorien" class="opt">Kategorien</a>
-          <a href="/#zufall" class="opt">Zufallstipp</a>
+          <a href="/#kategorien" class="opt">Tipps</a>
+          <a href="/prompts/" aria-current={Astro.url.pathname.startsWith('/prompts') ? 'page' : undefined}>Prompts</a>
+          <a href="/komponenten/" aria-current={Astro.url.pathname.startsWith('/komponenten') ? 'page' : undefined}>Komponenten</a>
         </nav>
         <a href="/#suche" class="hsearch" data-search-open>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
@@ -45,12 +46,14 @@ const { title, description = 'Kurze, geprüfte Tipps für Claude.ai, Claude Code
     <footer class="site-footer">
       <div class="container footer-row">
         <div>
-          <p><b>xurax.de</b>: 150 Tipps und Tricks für Claude, kostenlos und ohne Anmeldung.</p>
+          <p><b>xurax.de</b>: 150 Tipps und Tricks für Claude, dazu Prompts für Layouts und Komponenten-Bibliotheken. Kostenlos und ohne Anmeldung.</p>
           <p>Gesammelt aus der offiziellen Anthropic-Dokumentation und der Community. Inoffiziell, nicht mit Anthropic verbunden.</p>
         </div>
         <nav aria-label="Fußzeile">
           <a href="/#kategorien">Kategorien</a>
           <a href="/#start">Für Einsteiger</a>
+          <a href="/prompts/">Prompts</a>
+          <a href="/komponenten/">Komponenten</a>
         </nav>
       </div>
     </footer>
